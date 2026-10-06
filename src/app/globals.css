@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  /* Brand — electric purple / violet-blue */
+  --color-brand-50: #f3efff;
+  --color-brand-100: #e7dfff;
+  --color-brand-200: #d1c2ff;
+  --color-brand-300: #b39aff;
+  --color-brand-400: #7c4dff;
+  --color-brand-500: #6b47ff;
+  --color-brand-600: #5b35f5;
+  --color-brand-700: #4a27d6;
+  --color-brand-800: #3b1fae;
+
+  /* Deep navy / midnight */
+  --color-navy-950: #05051f;
+  --color-navy-900: #08082d;
+  --color-navy-800: #0e0e3a;
+  --color-navy-700: #17174e;
+
+  /* Ink — text scale */
+  --color-ink-900: #0b0b2b;
+  --color-ink-700: #26264f;
+  --color-ink-600: #4b4b6e;
+  --color-ink-500: #6a6a8c;
+  --color-ink-400: #9a9ab8;
+
+  /* Surfaces */
+  --color-shell: #e9edfb;
+  --color-page: #f3f5ff;
+  --color-surface: #ffffff;
+  --color-line: #e4e8f7;
+  --color-line-strong: #d3d9f0;
+
+  /* Pastels (icon containers) */
+  --color-pastel-blue: #e1efff;
+  --color-pastel-lavender: #ece7ff;
+  --color-pastel-mint: #e0f5ec;
+  --color-pastel-purple: #f0e8ff;
+  --color-pastel-orange: #ffefdd;
+  --color-pastel-pink: #ffe8f1;
+  --color-pastel-green: #e9f7e4;
+  --color-pastel-rose: #ffe9e4;
+
+  /* Icon foregrounds */
+  --color-icon-blue: #2e6be6;
+  --color-icon-violet: #6b47ff;
+  --color-icon-teal: #0e9f6e;
+  --color-icon-orange: #e8740c;
+  --color-icon-pink: #e24a8d;
+  --color-icon-green: #4caf50;
+  --color-icon-rose: #e2554a;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-hand: var(--font-caveat), "Segoe Script", cursive;
+
+  --shadow-soft: 0 12px 32px -14px rgb(11 11 43 / 0.10);
+  --shadow-card: 0 24px 55px -24px rgb(11 11 43 / 0.16);
+  --shadow-glow: 0 12px 30px -10px rgb(91 53 245 / 0.45);
+  --shadow-glow-lg: 0 24px 60px -16px rgb(124 77 255 / 0.5);
+
+  --radius-card: 18px;
+  --radius-panel: 24px;
+  --radius-shell: 28px;
+
+  --animate-marquee: marquee 40s linear infinite;
+  --animate-marquee-slow: marquee 80s linear infinite;
+  --animate-floaty: floaty 6s ease-in-out infinite;
+  --animate-floaty-slow: floaty 9s ease-in-out infinite;
+  --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+  }
+  @keyframes pulse-soft {
+    0%, 100% { opacity: 0.55; }
+    50% { opacity: 1; }
+  }
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-shell font-sans text-[15px] leading-relaxed text-ink-600 antialiased;
+  }
+  ::selection {
+    @apply bg-brand-600 text-white;
+  }
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-brand-500;
+  }
+
+  /* ---------- DARK MODE ----------
+     Intentionally designed (not inverted): deep navy canvas, dark blue-gray
+     surfaces, low-contrast borders, electric purple accents preserved. */
+  .dark {
+    color-scheme: dark;
+    --color-shell: #05051f;
+    --color-page: #0a0a28;
+    --color-surface: #12122f;
+    --color-line: #232345;
+    --color-line-strong: #2f2f56;
+
+    --color-ink-900: #f2f3fb;
+    --color-ink-700: #d4d7ec;
+    --color-ink-600: #b4b8d4;
+    --color-ink-500: #8f94b8;
+    --color-ink-400: #6a6f94;
+
+    --color-pastel-blue: #16233f;
+    --color-pastel-lavender: #1f1a3f;
+    --color-pastel-mint: #102e26;
+    --color-pastel-purple: #241a42;
+    --color-pastel-orange: #33230f;
+    --color-pastel-pink: #33121f;
+    --color-pastel-green: #14260f;
+    --color-pastel-rose: #331410;
+
+    --shadow-soft: 0 12px 32px -14px rgb(0 0 0 / 0.55);
+    --shadow-card: 0 24px 55px -24px rgb(0 0 0 / 0.65);
+    --shadow-glow: 0 12px 30px -10px rgb(91 53 245 / 0.5);
+    --shadow-glow-lg: 0 24px 60px -16px rgb(124 77 255 / 0.55);
+  }
+}
+
+/* Centered page container used by every section */
+@utility shell-pad {
+  @apply mx-auto w-full max-w-[1400px] px-4 sm:px-6 lg:px-8;
+}
+
+/* Gradient headline text */
+@utility text-gradient {
+  @apply bg-gradient-to-r from-brand-600 to-brand-400 bg-clip-text text-transparent;
+}
+.dark .text-gradient {
+  @apply from-brand-400 to-brand-300;
+  background-image: linear-gradient(to right, var(--color-brand-400), var(--color-brand-300));
+}
+
+/* Hide scrollbars for carousels */
+@utility no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Reduced motion: keep the experience calm */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
