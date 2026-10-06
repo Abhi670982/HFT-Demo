@@ -47,9 +47,9 @@ export const viewport: Viewport = {
 
 /**
  * Runs before paint — applies the persisted theme without hydration mismatch.
- * Default is dark only when the OS prefers it and nothing was stored.
+ * Default is light when nothing is stored.
  */
-const themeInit = `(()=>{try{const s=localStorage.getItem("hft-theme");const d=s?s==="dark":window.matchMedia("(prefers-color-scheme: dark)").matches;document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
+const themeInit = `(()=>{try{const s=localStorage.getItem("hft-theme");const d=s==="dark";document.documentElement.classList.toggle("dark",d)}catch(e){}})()`;
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
