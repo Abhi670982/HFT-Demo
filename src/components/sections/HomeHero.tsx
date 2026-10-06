@@ -138,7 +138,7 @@ export default function HomeHero() {
             {heroStats.map((stat) => (
               <div
                 key={stat.label}
-                className="flex flex-col gap-2 rounded-2xl border border-line bg-surface/70 p-2.5 backdrop-blur-sm transition-colors dark:border-dark-line dark:bg-surface/80 sm:flex-row sm:items-center sm:gap-2.5 sm:p-3.5"
+                className="flex flex-col gap-2 rounded-2xl border border-line bg-surface/85 p-2.5 backdrop-blur-sm transition-colors dark:border-dark-line dark:bg-surface/80 sm:flex-row sm:items-center sm:gap-2.5 sm:p-3.5"
               >
                 <span
                   className={cn(
@@ -185,7 +185,7 @@ export default function HomeHero() {
               key={pill.label}
               style={{ animationDelay: pill.delay }}
               className={cn(
-                "absolute z-10 animate-floaty rounded-xl border border-line bg-surface/95 px-2.5 py-2 shadow-card backdrop-blur-sm transition-colors dark:border-dark-line dark:bg-[#1a1a3dcc] sm:px-3",
+                "absolute z-10 animate-floaty rounded-xl border border-line bg-surface px-2.5 py-2 shadow-card backdrop-blur-sm transition-colors dark:border-dark-line dark:bg-[#1a1a3dcc] sm:px-3",
                 pill.className
               )}
             >

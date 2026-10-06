@@ -49,7 +49,7 @@ export default function ServicesPage() {
             <span
               key={label}
               style={{ animationDelay: `${i * 0.7}s` }}
-              className={`absolute ${labelPositions[i]} animate-floaty rounded-xl border border-line bg-surface/95 px-3.5 py-2 text-xs font-bold text-ink-900 dark:text-white shadow-soft backdrop-blur-sm`}
+              className={`absolute ${labelPositions[i]} animate-floaty rounded-xl border border-line bg-surface px-3.5 py-2 text-xs font-bold text-ink-900 shadow-soft backdrop-blur-sm dark:border-dark-line dark:bg-dark-surface dark:text-white`}
             >
               {label}
             </span>

@@ -1,15 +1,19 @@
+import Image from "next/image";
 import { cn } from "@/lib/utils";
+import type { BrandLogo } from "@/lib/data/logos";
 
 interface MarqueeProps {
-  items: string[];
+  items: BrandLogo[];
   dark?: boolean;
   slow?: boolean;
   className?: string;
 }
 
 /**
- * Seamless infinite marquee — the item list is duplicated exactly once and the
- * track translates -50%, so the loop is invisible. Pauses on hover.
+ * Seamless infinite brand-logo marquee — the item list is duplicated exactly
+ * once and the track translates -50%, so the loop is invisible. Pauses on hover.
+ * Official SVG logos render at a consistent height with their brand colors;
+ * brands without a sourced official asset use a premium text treatment.
  */
 export default function Marquee({ items, dark = false, slow = false, className }: MarqueeProps) {
   const row = [...items, ...items];
@@ -17,7 +21,7 @@ export default function Marquee({ items, dark = false, slow = false, className }
   return (
     <div
       className={cn(
-        "group relative w-full overflow-hidden py-1",
+        "group relative w-full overflow-hidden py-2",
         dark ? "text-white/70" : "text-ink-500",
         className
       )}
@@ -42,15 +46,36 @@ export default function Marquee({ items, dark = false, slow = false, className }
           slow ? "animate-marquee-slow" : "animate-marquee"
         )}
       >
-        {row.map((label, i) => (
+        {row.map((item, i) => (
           <span
-            key={`${label}-${i}`}
+            key={`${item.name}-${i}`}
             aria-hidden={i >= items.length}
             className="flex items-center gap-10 whitespace-nowrap sm:gap-14"
           >
-            <span className="text-lg font-semibold tracking-tight transition-colors duration-300 group-hover:text-ink-600 dark:text-dark-text-secondary sm:text-xl dark:group-hover:text-white">
-              {label}
-            </span>
+            {item.src ? (
+              <span
+                className="relative inline-flex h-7 w-auto items-center sm:h-8"
+                title={item.name}
+              >
+                <Image
+                  src={`/media/logos/${item.src}.svg`}
+                  alt={`${item.name} logo`}
+                  width={0}
+                  height={0}
+                  sizes="120px"
+                  className="h-full w-auto object-contain opacity-80 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              </span>
+            ) : (
+              <span
+                className={cn(
+                  "text-lg font-semibold tracking-tight transition-colors duration-300 sm:text-xl",
+                  dark ? "text-white/70 group-hover:text-white" : "text-ink-500 group-hover:text-ink-700"
+                )}
+              >
+                {item.name}
+              </span>
+            )}
             <span
               className={cn("size-1.5 shrink-0 rounded-full", dark ? "bg-brand-400/60" : "bg-brand-200")}
             />

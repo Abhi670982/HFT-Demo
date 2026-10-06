@@ -1,4 +1,4 @@
-import { featuredInMedia, placedAtCompanies, talentFromCompanies } from "@/lib/data/logos";
+import { mediaLogos, placedAtLogos, talentLogos } from "@/lib/data/logos";
 import Marquee from "@/components/ui/Marquee";
 import Reveal from "@/components/ui/Reveal";
 import { BadgeCheck, Newspaper, TrendingUp } from "lucide-react";
@@ -28,7 +28,7 @@ export default function MarqueesSection({
           </h2>
         </Reveal>
       </div>
-      <Marquee items={placedAtCompanies} />
+      <Marquee items={placedAtLogos} />
 
       {/* Optional extras (used on the About page) */}
       {showTalentFrom && (
@@ -43,7 +43,7 @@ export default function MarqueesSection({
               </h2>
             </Reveal>
           </div>
-          <Marquee items={talentFromCompanies} slow />
+          <Marquee items={talentLogos} slow />
         </>
       )}
 
@@ -59,7 +59,7 @@ export default function MarqueesSection({
               </h2>
             </Reveal>
           </div>
-          <Marquee items={featuredInMedia} dark slow />
+          <Marquee items={mediaLogos} dark slow />
         </>
       )}
     </section>
