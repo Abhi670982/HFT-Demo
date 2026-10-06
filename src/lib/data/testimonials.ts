@@ -12,15 +12,15 @@ export const testimonials: Testimonial[] = [
   {
     id: "dhairya-singh",
     name: "Dhairya Singh",
-    role: "Software Engineer — Oracle",
+    role: "Software Engineer",
     quote:
       "The moment they saw my resume, they said: 'This is exactly what we needed!' I went from 1.5 months of job search and rejections to landing 9 interviews in a single day.",
     outcome: "40% salary hike",
     results: [
-      "9 interviews in a single day",
-      "Project Head dream role",
-      "40% salary hike",
-      "2X career growth",
+      "9 Interviews in a Single Day",
+      "Dream Role Project Head",
+      "40% Salary hike",
+      "2X Career growth",
     ],
   },
   {
@@ -28,7 +28,7 @@ export const testimonials: Testimonial[] = [
     name: "Priya S.",
     role: "Software Engineer",
     quote:
-      "The resume and LinkedIn overhaul completely changed how recruiters responded to me. I stopped applying into the void and started interviewing for roles that actually matched my goals.",
+      "Mukul's guidance transformed my job search. I went from endless applications to landing my dream role with a 35% salary increase.",
     outcome: "35% salary increase",
   },
   {
@@ -36,7 +36,7 @@ export const testimonials: Testimonial[] = [
     name: "Rahul M.",
     role: "Product Manager",
     quote:
-      "A clear strategy, targeted outreach and honest feedback at every step. I stopped spraying applications and started having real conversations with the right companies.",
+      "The 1-on-1 session gave me clarity I'd been missing for months. Got 3 offers within 4 weeks of implementing the plan!",
     outcome: "3 offers within 4 weeks",
   },
   {
@@ -44,15 +44,15 @@ export const testimonials: Testimonial[] = [
     name: "Anita K.",
     role: "Data Analyst",
     quote:
-      "I came in unsure how to position myself. The consultation alone gave me the clarity and confidence I needed — and the interviews followed quickly after.",
-    outcome: "5 interviews after consultation",
+      "I was applying to 500+ jobs with zero results. After my consultation, I focused on quality applications and got 5 interviews.",
+    outcome: "5 interviews",
   },
   {
     id: "vikram-t",
     name: "Vikram T.",
     role: "Marketing Lead",
     quote:
-      "The team helped me run a structured, focused search while still employed. I ended up with multiple competing offers and the confidence to negotiate well.",
+      "From 6 months of rejections to multiple competing offers. The personalized action plan was exactly what I needed!",
     outcome: "Multiple competing offers",
   },
 ];

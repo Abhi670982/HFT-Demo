@@ -24,7 +24,7 @@ function LogoMark() {
         priority
       />
       <span className="text-[15px] font-bold tracking-tight text-ink-900 dark:text-white">
-        HuntForTomorrow<span className="text-brand-400">.in</span>
+        HuntForTomorrow
       </span>
     </Link>
   );

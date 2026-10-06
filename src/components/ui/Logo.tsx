@@ -32,7 +32,7 @@ export default function Logo({ dark = false, href = "/", markOnly = false, class
             dark ? "text-white" : "text-ink-900 dark:text-white"
           )}
         >
-          HuntForTomorrow<span className="text-brand-400">.in</span>
+          HuntForTomorrow
         </span>
       )}
     </Link>

@@ -1,19 +1,48 @@
-import { AtSign, Globe, MessageCircle, Video } from "lucide-react";
+import type { SVGProps } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { assets } from "@/lib/assets";
 import { footerColumns, siteName, siteTagline, socialLinks } from "@/lib/data/site";
 
-const socialIcons = [Globe, MessageCircle, AtSign, Video];
+const LinkedinIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
+    <rect x="2" y="9" width="4" height="12" />
+    <circle cx="4" cy="4" r="2" />
+  </svg>
+);
+
+const InstagramIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+  </svg>
+);
+
+const XIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className={className} {...props}>
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
+
+const YoutubeIcon = ({ className, ...props }: SVGProps<SVGSVGElement>) => (
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className} {...props}>
+    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33 2.78 2.78 0 0 0 1.94 2c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.33 29 29 0 0 0-.46-5.33z" />
+    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02" />
+  </svg>
+);
+
+const socialIcons = [LinkedinIcon, InstagramIcon, XIcon, YoutubeIcon];
 
 export default function Footer() {
   return (
-    <footer className="w-full rounded-b-[28px] bg-navy-950 text-white/70">
+    <footer className="w-full bg-navy-950 text-white/70">
       <div className="shell-pad pb-7 pt-12 sm:pt-14">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
           {/* Brand */}
           <div className="max-w-sm">
-            <Link href="/" aria-label="HuntForTomorrow.in — Home" className="inline-flex items-center gap-2.5">
+            <Link href="/" aria-label="HuntForTomorrow — Home" className="inline-flex items-center gap-2.5">
               <Image
                 src={assets.logo}
                 alt="HuntForTomorrow logo"
@@ -22,7 +51,7 @@ export default function Footer() {
                 className="size-9 rounded-xl object-contain"
               />
               <span className="text-[15px] font-bold tracking-tight text-white">
-                HuntForTomorrow<span className="text-brand-400">.in</span>
+                HuntForTomorrow
               </span>
             </Link>
             <p className="mt-4 text-[13px] leading-relaxed text-white/60">

@@ -32,6 +32,11 @@ export const metadata: Metadata = {
     "career strategy",
     "HuntForTomorrow",
   ],
+  icons: {
+    icon: "/media/HFTLOGO.png",
+    shortcut: "/media/HFTLOGO.png",
+    apple: "/media/HFTLOGO.png",
+  },
 };
 
 export const viewport: Viewport = {
@@ -57,7 +62,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         {/* Rounded page shell — every page renders inside this premium container */}
         <div
           id="shell"
-          className="mx-auto mt-[76px] w-full max-w-[1440px] flex-1 overflow-x-clip rounded-[28px] bg-page shadow-[0_30px_80px_-40px_rgb(11_11_43/0.25)] transition-colors duration-300 dark:shadow-[0_30px_80px_-40px_rgb(0_0_0/0.8)]"
+          className="mx-auto mt-[76px] w-full max-w-[1440px] flex-1 overflow-x-clip bg-page transition-colors duration-300"
         >
           {children}
           <Footer />

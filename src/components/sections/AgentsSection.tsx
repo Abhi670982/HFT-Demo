@@ -47,7 +47,7 @@ export default function AgentsSection() {
 
       <div
         ref={trackRef}
-        className="no-scrollbar relative mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto pb-3"
+        className="no-scrollbar relative mt-8 flex snap-x snap-mandatory gap-4 overflow-x-auto overflow-y-visible pb-3 pt-2"
       >
         {agents.map((agent) => (
           <AgentCard

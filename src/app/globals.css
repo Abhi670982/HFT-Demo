@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 @theme {
-  /* Brand — electric purple / violet-blue */
+  /* Brand â€” electric purple / violet-blue */
   --color-brand-50: #f3efff;
   --color-brand-100: #e7dfff;
   --color-brand-200: #d1c2ff;
@@ -18,7 +18,7 @@
   --color-navy-800: #0e0e3a;
   --color-navy-700: #17174e;
 
-  /* Ink — text scale */
+  /* Ink â€” text scale */
   --color-ink-900: #0b0b2b;
   --color-ink-700: #26264f;
   --color-ink-600: #4b4b6e;
@@ -63,8 +63,9 @@
   --radius-panel: 24px;
   --radius-shell: 28px;
 
-  --animate-marquee: marquee 40s linear infinite;
-  --animate-marquee-slow: marquee 80s linear infinite;
+  --animate-marquee: marquee 8s linear infinite;
+  --animate-marquee-slow: marquee 40s linear infinite;
+  --animate-marquee-ultra: marquee 60s linear infinite;
   --animate-floaty: floaty 6s ease-in-out infinite;
   --animate-floaty-slow: floaty 9s ease-in-out infinite;
   --animate-pulse-soft: pulse-soft 4s ease-in-out infinite;
@@ -166,3 +167,4 @@
     scroll-behavior: auto;
   }
 }
+@custom-variant dark (.dark &);

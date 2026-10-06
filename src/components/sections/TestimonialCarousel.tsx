@@ -1,39 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
-import { testimonials } from "@/lib/data/testimonials";
-import { cn } from "@/lib/utils";
+import { featuredTestimonial, supportingTestimonials } from "@/lib/data/testimonials";
 import TestimonialCard from "@/components/cards/TestimonialCard";
 import SectionHeader from "@/components/ui/SectionHeader";
-
-const AUTOPLAY_MS = 6500;
+import Image from "next/image";
+import { Quote } from "lucide-react";
+import clientPicture from "@/RealClientpicture.png";
 
 export default function TestimonialCarousel() {
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
-  const count = testimonials.length;
-  const timer = useRef<ReturnType<typeof setInterval> | null>(null);
-
-  const go = useCallback(
-    (dir: 1 | -1) => setIndex((i) => (i + dir + count) % count),
-    [count]
-  );
-
-  // Autoplay — paused on hover/focus/interaction
-  useEffect(() => {
-    if (paused) return;
-    timer.current = setInterval(() => setIndex((i) => (i + 1) % count), AUTOPLAY_MS);
-    return () => {
-      if (timer.current) clearInterval(timer.current);
-    };
-  }, [paused, count]);
-
-  const userGo = (dir: 1 | -1) => {
-    setPaused(true);
-    go(dir);
-  };
+  const row = [...supportingTestimonials, ...supportingTestimonials];
 
   return (
     <section id="success-stories" className="shell-pad scroll-mt-28 py-12 sm:py-16">
@@ -43,63 +18,60 @@ export default function TestimonialCarousel() {
         description="Real outcomes from job seekers who ran their search with HuntForTomorrow."
       />
 
-      <div
-        className="relative mx-auto mt-10 max-w-4xl"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onFocus={() => setPaused(true)}
-        onBlur={() => setPaused(false)}
-      >
-        {/* arrows */}
-        <button
-          type="button"
-          onClick={() => userGo(-1)}
-          aria-label="Previous testimonial"
-          className="absolute -left-2 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-xl border border-line bg-surface text-ink-600 dark:text-dark-text-secondary shadow-soft transition-all hover:-translate-y-[calc(50%+2px)] hover:border-brand-300 hover:text-brand-600 md:grid lg:-left-16"
-        >
-          <ChevronLeft className="size-5" aria-hidden="true" />
-        </button>
-        <button
-          type="button"
-          onClick={() => userGo(1)}
-          aria-label="Next testimonial"
-          className="absolute -right-2 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-xl border border-line bg-surface text-ink-600 dark:text-dark-text-secondary shadow-soft transition-all hover:-translate-y-[calc(50%+2px)] hover:border-brand-300 hover:text-brand-600 md:grid lg:-right-16"
-        >
-          <ChevronRight className="size-5" aria-hidden="true" />
-        </button>
-
-        {/* slides */}
-        <div className="overflow-hidden rounded-[24px]">
-          <motion.div
-            className="flex"
-            animate={{ x: `-${index * 100}%` }}
-            transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-          >
-            {testimonials.map((t) => (
-              <div key={t.id} className="w-full shrink-0 px-0.5">
-                <TestimonialCard testimonial={t} featured />
-              </div>
-            ))}
-          </motion.div>
-        </div>
-
-        {/* dots */}
-        <div className="mt-6 flex items-center justify-center gap-2">
-          {testimonials.map((t, i) => (
-            <button
-              key={t.id}
-              type="button"
-              onClick={() => {
-                setPaused(true);
-                setIndex(i);
-              }}
-              aria-label={`Go to testimonial ${i + 1} — ${t.name}`}
-              aria-current={i === index}
-              className={cn(
-                "h-2 rounded-full transition-all duration-300",
-                i === index ? "w-7 bg-gradient-to-r from-brand-600 to-brand-400" : "w-2 bg-line-strong hover:bg-brand-200"
-              )}
+      <div className="mx-auto mt-12 max-w-5xl">
+        {/* Featured Testimonial (Dhairya Singh) */}
+        <div className="grid overflow-hidden rounded-card border border-line bg-surface shadow-card dark:border-dark-line dark:bg-dark-surface lg:grid-cols-[0.8fr_1.2fr]">
+          <div className="relative aspect-square sm:aspect-[4/3] lg:aspect-auto">
+            <Image 
+              src={clientPicture} 
+              alt={featuredTestimonial.name} 
+              fill 
+              placeholder="blur"
+              className="object-cover" 
             />
+          </div>
+          <div className="flex flex-col justify-center p-6 sm:p-10 lg:p-12">
+            <div className="mb-6 w-fit rounded-full bg-[#f80000]/10 px-4 py-1.5 text-sm font-bold text-[#f80000] dark:bg-[#f80000]/20">
+              Oracle
+            </div>
+            <Quote className="mb-4 size-8 text-brand-200 dark:text-brand-400/70" aria-hidden="true" />
+            <blockquote className="text-lg font-medium leading-relaxed text-ink-700 dark:text-dark-text-secondary sm:text-xl sm:leading-[1.6]">
+              &ldquo;{featuredTestimonial.quote}&rdquo;
+            </blockquote>
+            
+            <div className="mt-8 flex flex-col gap-1 border-t border-line pt-6 dark:border-dark-line">
+              <span className="font-bold tracking-tight text-ink-900 dark:text-white text-base">
+                {featuredTestimonial.name}
+              </span>
+              <span className="text-sm text-ink-500 dark:text-dark-text-muted">
+                {featuredTestimonial.role}
+              </span>
+            </div>
+
+            <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+              {featuredTestimonial.results?.map(r => (
+                <div key={r} className="flex flex-col items-center justify-center rounded-xl bg-page p-3 text-center dark:bg-navy-900">
+                   <span className="text-xs font-bold leading-tight text-brand-600 dark:text-brand-400">{r}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Marquee for remaining testimonials */}
+      <div 
+        className="group relative mx-auto mt-8 w-full max-w-6xl overflow-hidden py-4"
+        style={{
+          maskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+          WebkitMaskImage: "linear-gradient(to right, transparent, black 15%, black 85%, transparent)",
+        }}
+      >
+        <div className="flex w-max items-stretch gap-6 animate-marquee-ultra hover:[animation-play-state:paused]">
+          {row.map((t, i) => (
+            <div key={`${t.id}-${i}`} className="w-[320px] sm:w-[380px] shrink-0">
+              <TestimonialCard testimonial={t} />
+            </div>
           ))}
         </div>
       </div>

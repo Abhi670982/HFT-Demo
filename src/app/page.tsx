@@ -13,6 +13,7 @@ import HumanAiSection from "@/components/sections/HumanAiSection";
 import TestimonialCarousel from "@/components/sections/TestimonialCarousel";
 import StatsSection from "@/components/sections/StatsSection";
 import PricingSection from "@/components/sections/PricingSection";
+import BonusSection from "@/components/sections/BonusSection";
 import HostSection from "@/components/sections/HostSection";
 import GuaranteeSection from "@/components/sections/GuaranteeSection";
 import OnboardingFormSection from "@/components/sections/OnboardingFormSection";
@@ -47,6 +48,7 @@ export default function Home() {
       <TestimonialCarousel />
       <StatsSection />
       <PricingSection />
+      <BonusSection />
       <HostSection />
       <GuaranteeSection />
       <OnboardingFormSection />

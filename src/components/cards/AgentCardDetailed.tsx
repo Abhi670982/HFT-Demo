@@ -18,7 +18,7 @@ export default function AgentCardDetailed({ agent, expanded, onToggle }: AgentCa
   return (
     <article
       className={cn(
-        "flex h-full flex-col overflow-hidden rounded-card border bg-surface transition-all duration-300",
+        "flex flex-col overflow-hidden rounded-card border bg-surface transition-all duration-300",
         expanded ? "border-brand-300 shadow-card" : "border-line shadow-soft hover:-translate-y-1 hover:border-brand-200 hover:shadow-card"
       )}
     >

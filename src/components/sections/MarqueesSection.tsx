@@ -59,7 +59,10 @@ export default function MarqueesSection({
               </h2>
             </Reveal>
           </div>
-          <Marquee items={mediaLogos} dark slow />
+          {/* Dark band so white text-fallback logos are always visible */}
+          <div className="w-full bg-navy-950 py-4">
+            <Marquee items={mediaLogos} dark slow />
+          </div>
         </>
       )}
     </section>

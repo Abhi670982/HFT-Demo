@@ -169,15 +169,15 @@ export default function ClientAccessPage() {
             </div>
             <div className="relative flex items-center gap-4 rounded-2xl border border-white/10 bg-surface/[0.06] p-4 backdrop-blur-sm">
               <Image
-                src="/images/logo.svg"
+                src="/media/HFTLOGO.png"
                 alt=""
                 width={44}
                 height={44}
-                className="rounded-xl"
+                className="rounded-xl object-contain"
                 aria-hidden="true"
               />
               <p className="text-[13px] leading-relaxed text-white/70">
-                HuntForTomorrow.in — Smarter Job Search for a Brighter Tomorrow
+                HuntForTomorrow — Smarter Job Search for a Brighter Tomorrow
               </p>
             </div>
           </div>

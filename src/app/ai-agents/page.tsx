@@ -84,7 +84,7 @@ export default function AiAgentsPage() {
 
       {/* Agent cards */}
       <section className="shell-pad py-8">
-        <motion.div layout className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        <motion.div layout className="grid items-start gap-5 md:grid-cols-2 xl:grid-cols-3">
           <AnimatePresence mode="popLayout">
             {visibleAgents.map((agent, i) => (
               <motion.div

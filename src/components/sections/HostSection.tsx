@@ -43,7 +43,7 @@ export default function HostSection() {
                 Mukul Sharma
               </h2>
               <p className="mt-1 text-sm font-semibold text-brand-600">
-                Founder — Hunt For Tomorrow
+                CEO & Founder
               </p>
             </div>
             <p className="max-w-xl text-[15px] leading-relaxed text-ink-500">
