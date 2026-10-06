@@ -52,8 +52,8 @@ function ScoreRing({ score }: { score: number }) {
         </defs>
       </svg>
       <div className="absolute flex flex-col items-center">
-        <span className="text-3xl font-extrabold tracking-tight text-ink-900">{score}%</span>
-        <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-400">
+        <span className="text-3xl font-extrabold tracking-tight text-ink-900 dark:text-white">{score}%</span>
+        <span className="text-[11px] font-semibold uppercase tracking-wider text-ink-500 dark:text-dark-text-muted">
           Match
         </span>
       </div>
@@ -65,8 +65,8 @@ function MatchBar({ label, value }: { label: string; value: number }) {
   return (
     <div>
       <div className="mb-1.5 flex items-center justify-between text-[13px] font-semibold">
-        <span className="text-ink-600">{label}</span>
-        <span className="text-ink-900">{value}%</span>
+        <span className="text-ink-600 dark:text-dark-text-secondary">{label}</span>
+        <span className="text-ink-900 dark:text-white">{value}%</span>
       </div>
       <div className="h-2.5 w-full overflow-hidden rounded-full bg-line">
         <motion.div
@@ -81,7 +81,8 @@ function MatchBar({ label, value }: { label: string; value: number }) {
 }
 
 function ChipList({ items, tone }: { items: string[]; tone: "good" | "warn" }) {
-  if (!items.length) return <p className="text-sm text-ink-400">Nothing to show here.</p>;
+  if (!items.length)
+    return <p className="text-sm text-ink-500 dark:text-dark-text-muted">Nothing to show here.</p>;
   return (
     <div className="flex flex-wrap gap-1.5">
       {items.map((item) => (
@@ -196,16 +197,16 @@ export default function ToolAnalyzer() {
             className={cn(
               "flex items-center gap-3 rounded-2xl border p-4 transition-all",
               phase === "input" || (phase === "results" && i === 3)
-                ? "border-brand-200 bg-white shadow-soft"
-                : "border-line bg-white/50"
+                ? "border-brand-200 bg-surface shadow-soft dark:border-brand-500/40 dark:bg-dark-surface"
+                : "border-line bg-surface/60 dark:border-dark-line dark:bg-white/[0.04]"
             )}
           >
             <span className="grid size-9 shrink-0 place-items-center rounded-xl bg-gradient-to-br from-brand-600 to-brand-400 text-sm font-extrabold text-white">
               {step.number}
             </span>
             <div>
-              <p className="text-sm font-bold text-ink-900">{step.title}</p>
-              <p className="text-xs text-ink-400">{step.hint}</p>
+              <p className="text-sm font-bold text-ink-900 dark:text-white">{step.title}</p>
+              <p className="text-xs text-ink-500 dark:text-dark-text-muted">{step.hint}</p>
             </div>
           </li>
         ))}
@@ -222,9 +223,9 @@ export default function ToolAnalyzer() {
             className="grid gap-6 lg:grid-cols-2"
           >
             {/* Step 1 — Resume */}
-            <div className="flex flex-col gap-4 rounded-panel border border-line bg-white p-6 shadow-soft sm:p-7">
+            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <div className="flex items-center justify-between gap-3">
-                <h3 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink-900">
+                <h3 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink-900 dark:text-white">
                   <IconContainer tone="blue" size="sm">
                     <FileText aria-hidden="true" />
                   </IconContainer>
@@ -248,11 +249,13 @@ export default function ToolAnalyzer() {
                 onDrop={onDrop}
                 className={cn(
                   "flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-4 py-8 text-center transition-all",
-                  dragging ? "border-brand-400 bg-brand-50" : "border-line-strong bg-page/60"
+                  dragging
+                    ? "border-brand-400 bg-brand-50 dark:bg-brand-600/20"
+                    : "border-line-strong bg-page/60 dark:border-dark-line dark:bg-white/[0.04]"
                 )}
               >
-                <Upload className="size-6 text-ink-400" aria-hidden="true" />
-                <p className="text-sm font-semibold text-ink-700">
+                <Upload className="size-6 text-ink-500 dark:text-dark-text-secondary" aria-hidden="true" />
+                <p className="text-sm font-semibold text-ink-700 dark:text-dark-text-secondary">
                   {fileName ? fileName : "Drag & drop or"}
                 </p>
                 <button
@@ -262,7 +265,9 @@ export default function ToolAnalyzer() {
                 >
                   browse files
                 </button>
-                <p className="text-xs text-ink-400">.txt / .md for this demo, or just paste below</p>
+                <p className="text-xs text-ink-500 dark:text-dark-text-muted">
+                  .txt / .md for this demo, or just paste below
+                </p>
                 <input
                   ref={fileInputRef}
                   type="file"
@@ -290,8 +295,8 @@ export default function ToolAnalyzer() {
             </div>
 
             {/* Step 2 — JD */}
-            <div className="flex flex-col gap-4 rounded-panel border border-line bg-white p-6 shadow-soft sm:p-7">
-              <h3 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink-900">
+            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+              <h3 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink-900 dark:text-white">
                 <IconContainer tone="violet" size="sm">
                   <Target aria-hidden="true" />
                 </IconContainer>
@@ -331,7 +336,7 @@ export default function ToolAnalyzer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center gap-5 rounded-panel border border-line bg-white py-24 shadow-soft"
+            className="flex flex-col items-center justify-center gap-5 rounded-panel border border-line bg-surface py-24 shadow-soft dark:border-dark-line"
           >
             <motion.span
               animate={{ rotate: 360 }}
@@ -340,7 +345,7 @@ export default function ToolAnalyzer() {
             >
               <GaugeCircle className="size-7" aria-hidden="true" />
             </motion.span>
-            <p className="text-lg font-bold text-ink-900">Analyzing your match…</p>
+            <p className="text-lg font-bold text-ink-900 dark:text-white">Analyzing your match…</p>
             <p className="text-sm text-ink-500">Comparing resume against the job description</p>
           </motion.div>
         )}
@@ -355,10 +360,10 @@ export default function ToolAnalyzer() {
             className="flex flex-col gap-6"
           >
             {/* score header */}
-            <div className="grid items-center gap-8 rounded-panel border border-line bg-white p-7 shadow-card sm:p-9 md:grid-cols-[auto_1fr]">
+            <div className="grid items-center gap-8 rounded-panel border border-line bg-surface p-7 shadow-card dark:border-dark-line sm:p-9 md:grid-cols-[auto_1fr]">
               <div className="mx-auto flex flex-col items-center gap-3">
                 <ScoreRing score={result.overall} />
-                <p className="text-sm font-semibold text-ink-600">Overall Match Score</p>
+                <p className="text-sm font-semibold text-ink-600 dark:text-dark-text-secondary">Overall Match Score</p>
               </div>
               <div className="flex flex-col gap-4">
                 <MatchBar label="Keyword Match" value={result.keywordMatch} />
@@ -375,27 +380,27 @@ export default function ToolAnalyzer() {
 
             {/* details grid */}
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="flex flex-col gap-4 rounded-panel border border-line bg-white p-6 shadow-soft sm:p-7">
-                <h3 className="flex items-center gap-2 text-base font-bold text-ink-900">
+              <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+                <h3 className="flex items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
                   <CheckCircle2 className="size-5 text-icon-teal" aria-hidden="true" />
                   Matched Keywords
                 </h3>
                 <ChipList items={result.matchedKeywords} tone="good" />
-                <h3 className="mt-3 flex items-center gap-2 text-base font-bold text-ink-900">
+                <h3 className="mt-3 flex items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
                   <CircleAlert className="size-5 text-icon-orange" aria-hidden="true" />
                   Missing Keywords
                 </h3>
                 <ChipList items={result.missingKeywords} tone="warn" />
               </div>
 
-              <div className="flex flex-col gap-4 rounded-panel border border-line bg-white p-6 shadow-soft sm:p-7">
-                <h3 className="flex items-center gap-2 text-base font-bold text-ink-900">
+              <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+                <h3 className="flex items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
                   <Target className="size-5 text-icon-violet" aria-hidden="true" />
                   Profile Gaps
                 </h3>
                 <ul className="flex flex-col gap-2.5">
                   {result.gaps.map((gap) => (
-                    <li key={gap} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-600">
+                    <li key={gap} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">
                       <span className="mt-1.5 size-2 shrink-0 rounded-full bg-pastel-orange ring-4 ring-pastel-orange/40" />
                       {gap}
                     </li>
@@ -404,20 +409,20 @@ export default function ToolAnalyzer() {
               </div>
             </div>
 
-            <div className="flex flex-col gap-4 rounded-panel border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6 shadow-soft sm:p-7">
-              <h3 className="flex items-center gap-2 text-base font-bold text-ink-900">
+            <div className="flex flex-col gap-4 rounded-panel border border-brand-200 bg-gradient-to-br from-brand-50 to-white p-6 shadow-soft dark:border-brand-500/30 dark:from-brand-600/15 dark:to-dark-surface sm:p-7">
+              <h3 className="flex items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
                 <Lightbulb className="size-5 text-icon-violet" aria-hidden="true" />
                 Recommendations
               </h3>
               <ul className="grid gap-2.5 sm:grid-cols-2">
                 {result.recommendations.map((rec) => (
-                  <li key={rec} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-600">
+                  <li key={rec} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">
                     <Zap className="mt-0.5 size-4 shrink-0 text-brand-500" aria-hidden="true" />
                     {rec}
                   </li>
                 ))}
               </ul>
-              <p className="text-xs text-ink-400">
+              <p className="text-xs text-ink-500 dark:text-dark-text-muted">
                 Demo analysis — heuristics run locally in your browser. Architecture is ready for a
                 real AI backend to be plugged in later.
               </p>

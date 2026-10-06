@@ -49,7 +49,7 @@ export default function ServicesPage() {
             <span
               key={label}
               style={{ animationDelay: `${i * 0.7}s` }}
-              className={`absolute ${labelPositions[i]} animate-floaty rounded-xl border border-line bg-surface/95 px-3.5 py-2 text-xs font-bold text-ink-900 shadow-soft backdrop-blur-sm`}
+              className={`absolute ${labelPositions[i]} animate-floaty rounded-xl border border-line bg-surface/95 px-3.5 py-2 text-xs font-bold text-ink-900 dark:text-white shadow-soft backdrop-blur-sm`}
             >
               {label}
             </span>
@@ -72,7 +72,7 @@ export default function ServicesPage() {
       <section className="shell-pad pb-10">
         <Reveal>
           <div className="rounded-panel border border-line bg-surface p-8 shadow-soft sm:p-10">
-            <h2 className="text-center text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">
+            <h2 className="text-center text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
               One system, not ten checkboxes
             </h2>
             <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-relaxed text-ink-500">

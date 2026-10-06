@@ -10,7 +10,7 @@ export default function GuaranteeSection() {
           <IconContainer tone="mint" size="lg">
             <ShieldCheck aria-hidden="true" />
           </IconContainer>
-          <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">
+          <h2 className="text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
             Zero-Risk Guarantee
           </h2>
           <p className="max-w-xl text-[15px] leading-relaxed text-ink-500">

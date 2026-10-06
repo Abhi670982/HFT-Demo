@@ -55,7 +55,7 @@ export default function ThemeToggle({ className }: { className?: string }) {
       aria-label={dark ? "Switch to light mode" : "Switch to dark mode"}
       title={dark ? "Light mode" : "Dark mode"}
       className={cn(
-        "relative grid size-9 shrink-0 place-items-center rounded-xl border border-line bg-surface text-ink-600 transition-all duration-300 hover:border-brand-300 hover:text-brand-600 dark:border-dark-line dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:border-brand-400 dark:hover:text-brand-300",
+        "relative grid size-9 shrink-0 place-items-center rounded-xl border border-line bg-surface text-ink-600 dark:text-dark-text-secondary transition-all duration-300 hover:border-brand-300 hover:text-brand-600 dark:border-dark-line dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:border-brand-400 dark:hover:text-brand-300",
         className
       )}
     >

@@ -14,8 +14,8 @@ export default function Pill({ children, dark = false, className }: PillProps) {
       className={cn(
         "inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-[11px] font-semibold uppercase tracking-[0.16em]",
         dark
-          ? "border-white/15 bg-surface/5 text-brand-200"
-          : "border-brand-100 bg-surface text-brand-600 shadow-soft",
+          ? "border-white/15 bg-white/5 text-brand-300"
+          : "border-brand-200 bg-surface text-brand-700 shadow-soft",
         className
       )}
     >

@@ -42,7 +42,7 @@ All images are referenced from **one file**: `src/lib/assets.ts`.
 Drop real files into `public/images/` and update paths there — no component edits needed.
 
 - `hero-professional.svg` — home hero person
-- `ceo.svg` — Mukul Sharma portrait (Meet Your Host + founder card)
+- `ceo` → `/media/HFTCEOSIRPIC.png` — Mukul Sharma (Founder) portrait, used in Meet Your Host + About leadership
 - `client-*.svg` — testimonial portraits
 - `team-collaboration.svg` — About hero
 - `ai-robot.svg` — AI Agents hero

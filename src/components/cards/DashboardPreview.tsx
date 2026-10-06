@@ -35,7 +35,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
           <span className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-brand-600 to-brand-400 text-white">
             <GraduationCap className="size-4" aria-hidden="true" />
           </span>
-          <span className="text-sm font-bold text-ink-900">HFT Academy</span>
+          <span className="text-sm font-bold text-ink-900 dark:text-white dark:text-white">HFT Academy</span>
         </div>
         <span className="rounded-full bg-pastel-mint px-2.5 py-1 text-[11px] font-semibold text-icon-teal">
           Continue learning
@@ -54,7 +54,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
                 <PlayCircle className="size-5" aria-hidden="true" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[13px] font-semibold text-ink-900">{course.title}</p>
+                <p className="truncate text-[13px] font-semibold text-ink-900 dark:text-white dark:text-white">{course.title}</p>
                 <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line">
                   <div
                     className={cn("h-full rounded-full transition-all", course.tone)}
@@ -79,7 +79,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
                   <stat.icon className="size-4" aria-hidden="true" />
                 </span>
                 <span className="text-xs font-medium text-ink-500">{stat.label}</span>
-                <span className="ml-auto text-sm font-bold text-ink-900">{stat.value}</span>
+                <span className="ml-auto text-sm font-bold text-ink-900 dark:text-white dark:text-white">{stat.value}</span>
               </div>
             ))}
           </div>

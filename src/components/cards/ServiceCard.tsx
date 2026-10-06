@@ -37,7 +37,7 @@ export default function ServiceCard({
         <Icon aria-hidden="true" />
       </IconContainer>
       <div className="flex flex-col gap-1.5">
-        <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900">{title}</h3>
+        <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900 dark:text-white dark:text-white">{title}</h3>
         <p className="text-sm leading-relaxed text-ink-500">{description}</p>
       </div>
     </div>

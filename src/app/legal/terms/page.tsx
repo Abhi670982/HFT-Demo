@@ -15,9 +15,9 @@ export default function TermsPage() {
         description="The ground rules for using this demo website."
       />
       <section className="shell-pad pb-16">
-        <div className="mx-auto flex max-w-3xl flex-col gap-6 rounded-panel border border-line bg-surface p-8 text-[15px] leading-relaxed text-ink-600 shadow-soft sm:p-10">
+        <div className="mx-auto flex max-w-3xl flex-col gap-6 rounded-panel border border-line bg-surface p-8 text-[15px] leading-relaxed text-ink-600 dark:text-dark-text-secondary shadow-soft sm:p-10">
           <div>
-            <h2 className="mb-2 text-lg font-bold text-ink-900">Prototype status</h2>
+            <h2 className="mb-2 text-lg font-bold text-ink-900 dark:text-white dark:text-white">Prototype status</h2>
             <p>
               This site is a design and development prototype for HuntForTomorrow.in. Content,
               imagery and statistics are presented for demonstration purposes and may change before
@@ -25,7 +25,7 @@ export default function TermsPage() {
             </p>
           </div>
           <div>
-            <h2 className="mb-2 text-lg font-bold text-ink-900">Company references</h2>
+            <h2 className="mb-2 text-lg font-bold text-ink-900 dark:text-white dark:text-white">Company references</h2>
             <p>
               Company and media names appear as text-based references describing the types of
               organisations our community works with or follows. These are not partnership or
@@ -33,7 +33,7 @@ export default function TermsPage() {
             </p>
           </div>
           <div>
-            <h2 className="mb-2 text-lg font-bold text-ink-900">Demo functionality</h2>
+            <h2 className="mb-2 text-lg font-bold text-ink-900 dark:text-white dark:text-white">Demo functionality</h2>
             <p>
               Onboarding, client access, dashboards and analysis tools are simulated on the
               frontend. They demonstrate intended behaviour and do not process real transactions or

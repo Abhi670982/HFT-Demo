@@ -15,7 +15,7 @@ export interface Leader {
 export const leadership: Leader[] = [
   {
     name: "Mukul Sharma",
-    role: "CEO & Co-Founder — Hunt For Tomorrow",
+    role: "Founder — Hunt For Tomorrow",
     bio: "Recognized among Asia's Top 30 HR, with deep experience in talent acquisition and career strategy. Has personally mentored 500+ professionals, including senior leaders at CXO, HR Director and Senior Manager levels.",
     image: assets.ceo,
   },

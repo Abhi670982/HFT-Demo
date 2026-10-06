@@ -14,7 +14,7 @@ const variants: Record<Variant, string> = {
     "bg-gradient-to-r from-brand-600 to-brand-400 text-white shadow-glow hover:-translate-y-0.5 hover:shadow-glow-lg active:translate-y-0",
   secondary:
     "border border-brand-200 bg-surface text-ink-900 shadow-soft hover:-translate-y-0.5 hover:border-brand-400 hover:text-brand-600 active:translate-y-0 dark:border-brand-500/40 dark:bg-dark-surface dark:text-dark-text dark:hover:text-brand-300",
-  ghost: "text-ink-700 hover:text-brand-600 dark:text-dark-text-secondary dark:hover:text-brand-300",
+  ghost: "text-ink-700 dark:text-dark-text-secondary hover:text-brand-600 dark:text-dark-text-secondary dark:hover:text-brand-300",
   white: "bg-white text-navy-900 shadow-soft hover:-translate-y-0.5 hover:shadow-card active:translate-y-0",
   dark: "bg-navy-900 text-white hover:-translate-y-0.5 hover:bg-navy-800 active:translate-y-0",
 };
@@ -62,7 +62,8 @@ export default function Button({
     </>
   );
 
-  // Disabled buttons render as inert elements — visible but intentionally inactive.
+  // Disabled buttons render as inert elements — visibly intentional in both themes,
+  // not broken: the gradient stays, with reduced saturation and a clear not-allowed cursor.
   if (disabled) {
     return (
       <button
@@ -70,7 +71,10 @@ export default function Button({
         disabled
         aria-disabled="true"
         title="Coming soon"
-        className={cn(classes, "cursor-not-allowed opacity-55 saturate-50")}
+        className={cn(
+          classes,
+          "cursor-not-allowed opacity-60 saturate-[0.6] dark:opacity-50 dark:saturate-[0.5]"
+        )}
       >
         {content}
       </button>

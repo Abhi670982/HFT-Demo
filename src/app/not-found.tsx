@@ -9,7 +9,7 @@ export default function NotFound() {
         <Compass aria-hidden="true" />
       </IconContainer>
       <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brand-600">Error 404</p>
-      <h1 className="text-4xl font-extrabold tracking-tight text-ink-900 sm:text-5xl">
+      <h1 className="text-4xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-5xl">
         This page went off-strategy
       </h1>
       <p className="max-w-md text-[15px] leading-relaxed text-ink-500">

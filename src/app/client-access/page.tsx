@@ -48,7 +48,7 @@ export default function ClientAccessPage() {
                 <span className="grid size-14 place-items-center rounded-full bg-pastel-green text-icon-green">
                   <MailCheck className="size-7" aria-hidden="true" />
                 </span>
-                <h1 className="text-2xl font-extrabold tracking-tight text-ink-900">
+                <h1 className="text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white">
                   Access verified
                 </h1>
                 <p className="text-sm leading-relaxed text-ink-500">
@@ -61,7 +61,7 @@ export default function ClientAccessPage() {
                   <span className="inline-flex w-fit items-center gap-2 rounded-full bg-pastel-lavender px-3 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-icon-violet">
                     <LockKeyhole className="size-3.5" aria-hidden="true" /> Secure Access
                   </span>
-                  <h1 className="text-3xl font-extrabold tracking-tight text-ink-900">
+                  <h1 className="text-3xl font-extrabold tracking-tight text-ink-900 dark:text-white">
                     Client Access
                   </h1>
                   <p className="text-sm leading-relaxed text-ink-500">
@@ -72,7 +72,7 @@ export default function ClientAccessPage() {
 
                 <form onSubmit={onSubmit} noValidate className="flex flex-col gap-4">
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="client-email" className="text-[13px] font-semibold text-ink-700">
+                    <label htmlFor="client-email" className="text-[13px] font-semibold text-ink-700 dark:text-dark-text-secondary">
                       Registered email
                     </label>
                     <input
@@ -86,13 +86,13 @@ export default function ClientAccessPage() {
                         setError(null);
                       }}
                       className={cn(
-                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-4",
+                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-500 dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-4",
                         error ? "border-rose-300 focus:ring-rose-100" : "border-line focus:border-brand-400 focus:ring-brand-100"
                       )}
                     />
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    <label htmlFor="client-code" className="text-[13px] font-semibold text-ink-700">
+                    <label htmlFor="client-code" className="text-[13px] font-semibold text-ink-700 dark:text-dark-text-secondary">
                       Access code
                     </label>
                     <input
@@ -105,7 +105,7 @@ export default function ClientAccessPage() {
                         setError(null);
                       }}
                       className={cn(
-                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 focus:outline-none focus:ring-4",
+                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-500 dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-4",
                         error ? "border-rose-300 focus:ring-rose-100" : "border-line focus:border-brand-400 focus:ring-brand-100"
                       )}
                     />
@@ -125,7 +125,7 @@ export default function ClientAccessPage() {
                   </button>
                 </form>
 
-                <p className="flex items-start gap-2 text-xs leading-relaxed text-ink-400">
+                <p className="flex items-start gap-2 text-xs leading-relaxed text-ink-500 dark:text-dark-text-muted">
                   <ShieldCheck className="mt-0.5 size-4 shrink-0 text-icon-teal" aria-hidden="true" />
                   This is a demo access flow — any valid email and a 4+ character code opens the
                   sample dashboard. No real credentials are stored.

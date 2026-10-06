@@ -137,7 +137,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Leadership / CEO */}
+      {/* Leadership / Founder */}
       <section className="shell-pad py-10 sm:py-12">
         <SectionHeader
           eyebrow="Leadership"

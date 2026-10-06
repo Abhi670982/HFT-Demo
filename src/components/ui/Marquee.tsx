@@ -18,7 +18,7 @@ export default function Marquee({ items, dark = false, slow = false, className }
     <div
       className={cn(
         "group relative overflow-hidden py-1",
-        dark ? "text-white/65" : "text-ink-400",
+        dark ? "text-white/70" : "text-ink-500",
         className
       )}
     >
@@ -48,7 +48,7 @@ export default function Marquee({ items, dark = false, slow = false, className }
             aria-hidden={i >= items.length}
             className="flex items-center gap-10 whitespace-nowrap sm:gap-14"
           >
-            <span className="text-lg font-semibold tracking-tight transition-colors duration-300 group-hover:text-ink-600 sm:text-xl dark:group-hover:text-white">
+            <span className="text-lg font-semibold tracking-tight transition-colors duration-300 group-hover:text-ink-600 dark:text-dark-text-secondary sm:text-xl dark:group-hover:text-white">
               {label}
             </span>
             <span

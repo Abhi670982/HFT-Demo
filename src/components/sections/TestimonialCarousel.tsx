@@ -55,7 +55,7 @@ export default function TestimonialCarousel() {
           type="button"
           onClick={() => userGo(-1)}
           aria-label="Previous testimonial"
-          className="absolute -left-2 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-xl border border-line bg-surface text-ink-600 shadow-soft transition-all hover:-translate-y-[calc(50%+2px)] hover:border-brand-300 hover:text-brand-600 md:grid lg:-left-16"
+          className="absolute -left-2 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-xl border border-line bg-surface text-ink-600 dark:text-dark-text-secondary shadow-soft transition-all hover:-translate-y-[calc(50%+2px)] hover:border-brand-300 hover:text-brand-600 md:grid lg:-left-16"
         >
           <ChevronLeft className="size-5" aria-hidden="true" />
         </button>
@@ -63,7 +63,7 @@ export default function TestimonialCarousel() {
           type="button"
           onClick={() => userGo(1)}
           aria-label="Next testimonial"
-          className="absolute -right-2 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-xl border border-line bg-surface text-ink-600 shadow-soft transition-all hover:-translate-y-[calc(50%+2px)] hover:border-brand-300 hover:text-brand-600 md:grid lg:-right-16"
+          className="absolute -right-2 top-1/2 z-10 hidden size-11 -translate-y-1/2 place-items-center rounded-xl border border-line bg-surface text-ink-600 dark:text-dark-text-secondary shadow-soft transition-all hover:-translate-y-[calc(50%+2px)] hover:border-brand-300 hover:text-brand-600 md:grid lg:-right-16"
         >
           <ChevronRight className="size-5" aria-hidden="true" />
         </button>

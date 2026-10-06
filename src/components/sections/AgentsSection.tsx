@@ -30,7 +30,7 @@ export default function AgentsSection() {
             type="button"
             onClick={() => scrollBy(-1)}
             aria-label="Scroll agents left"
-            className="grid size-10 place-items-center rounded-full border border-line bg-surface text-ink-600 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-600 dark:border-dark-line dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:border-brand-400 dark:hover:text-brand-300"
+            className="grid size-10 place-items-center rounded-full border border-line bg-surface text-ink-600 dark:text-dark-text-secondary shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-600 dark:border-dark-line dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:border-brand-400 dark:hover:text-brand-300"
           >
             <ChevronLeft className="size-[18px]" aria-hidden="true" />
           </button>
@@ -38,7 +38,7 @@ export default function AgentsSection() {
             type="button"
             onClick={() => scrollBy(1)}
             aria-label="Scroll agents right"
-            className="grid size-10 place-items-center rounded-full border border-line bg-surface text-ink-600 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-600 dark:border-dark-line dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:border-brand-400 dark:hover:text-brand-300"
+            className="grid size-10 place-items-center rounded-full border border-line bg-surface text-ink-600 dark:text-dark-text-secondary shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-300 hover:text-brand-600 dark:border-dark-line dark:bg-dark-surface dark:text-dark-text-secondary dark:hover:border-brand-400 dark:hover:text-brand-300"
           >
             <ChevronRight className="size-[18px]" aria-hidden="true" />
           </button>

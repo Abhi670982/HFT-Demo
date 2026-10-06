@@ -123,10 +123,10 @@ export default function ClientDashboardPage() {
         >
           <div className="mb-4 hidden px-2 lg:block">
             <Logo markOnly className="mb-3" />
-            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+            <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
               Client Workspace
             </p>
-            <p className="mt-0.5 text-sm font-bold text-ink-900">Demo Client</p>
+            <p className="mt-0.5 text-sm font-bold text-ink-900 dark:text-white">Demo Client</p>
           </div>
           <nav aria-label="Dashboard sections" className="flex flex-wrap gap-1.5 lg:flex-col">
             {tabs.map((t) => (
@@ -139,7 +139,7 @@ export default function ClientDashboardPage() {
                   "flex items-center gap-2.5 rounded-xl px-3.5 py-2.5 text-[13.5px] font-semibold transition-all",
                   tab === t.id
                     ? "bg-gradient-to-r from-brand-600 to-brand-400 text-white shadow-glow"
-                    : "text-ink-600 hover:bg-page hover:text-ink-900"
+                    : "text-ink-600 dark:text-dark-text-secondary hover:bg-page hover:text-ink-900"
                 )}
               >
                 <t.icon className="size-4 shrink-0" aria-hidden="true" />
@@ -162,14 +162,14 @@ export default function ClientDashboardPage() {
           <div className="flex flex-wrap items-center justify-between gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft sm:p-7">
             <div>
               <Pill>Client Dashboard — Demo</Pill>
-              <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-ink-900 sm:text-3xl">
+              <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
                 {content.heading}
               </h1>
               <p className="mt-1 max-w-xl text-sm leading-relaxed text-ink-500">{content.note}</p>
             </div>
             <div className="hidden items-center gap-2 rounded-xl bg-page px-4 py-3 sm:flex">
               <Mail className="size-4 text-icon-violet" aria-hidden="true" />
-              <span className="text-xs font-semibold text-ink-600">demo.client@example.com</span>
+              <span className="text-xs font-semibold text-ink-600 dark:text-dark-text-secondary">demo.client@example.com</span>
             </div>
           </div>
 
@@ -196,7 +196,7 @@ export default function ClientDashboardPage() {
                     <Handshake className="size-5 opacity-70" aria-hidden="true" />
                   </span>
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-[15px] font-bold text-ink-900">{row.title}</p>
+                    <p className="truncate text-[15px] font-bold text-ink-900 dark:text-white">{row.title}</p>
                     <p className="truncate text-[13px] text-ink-500">{row.meta}</p>
                   </div>
                   <span
@@ -212,7 +212,7 @@ export default function ClientDashboardPage() {
             </motion.div>
           </AnimatePresence>
 
-          <p className="rounded-2xl border border-dashed border-line-strong bg-surface/60 p-4 text-center text-xs leading-relaxed text-ink-400">
+          <p className="rounded-2xl border border-dashed border-line-strong bg-surface/60 p-4 text-center text-xs leading-relaxed text-ink-500 dark:text-dark-text-muted">
             Frontend demo dashboard with sample data — no real backend, no real client data. Replace
             with live APIs when the backend is ready.
           </p>

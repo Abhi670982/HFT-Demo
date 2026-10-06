@@ -49,7 +49,7 @@ export default function ToolsPage() {
                 <IconContainer tone={(["mint", "violet", "blue"] as const)[i]} size="md">
                   <p.icon aria-hidden="true" />
                 </IconContainer>
-                <p className="text-sm font-semibold leading-snug text-ink-700">{p.text}</p>
+                <p className="text-sm font-semibold leading-snug text-ink-700 dark:text-dark-text-secondary">{p.text}</p>
               </div>
             </Reveal>
           ))}

@@ -24,7 +24,7 @@ export interface FormFieldProps {
 }
 
 const baseInput =
-  "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-400 transition-all focus:outline-none focus:ring-4";
+  "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-500 transition-all focus:outline-none focus:ring-4 dark:text-white dark:placeholder:text-dark-text-muted";
 
 export default function FormField({
   label,
@@ -41,15 +41,15 @@ export default function FormField({
   onChange,
 }: FormFieldProps) {
   const stateClasses = error
-    ? "border-rose-300 focus:border-rose-400 focus:ring-rose-100"
-    : "border-line focus:border-brand-400 focus:ring-brand-100";
+    ? "border-rose-300 focus:border-rose-400 focus:ring-rose-100 dark:border-rose-500/50 dark:focus:border-rose-400 dark:focus:ring-rose-500/20"
+    : "border-line focus:border-brand-400 focus:ring-brand-100 dark:border-dark-line dark:focus:border-brand-400 dark:focus:ring-brand-500/20";
 
   const fieldId = `field-${name}`;
   const errorId = `error-${name}`;
 
   return (
     <div className="flex w-full flex-col gap-1.5">
-      <label htmlFor={fieldId} className="text-[13px] font-semibold text-ink-700">
+      <label htmlFor={fieldId} className="text-[13px] font-semibold text-ink-700 dark:text-dark-text-secondary">
         {label}
         {required && (
           <span className="ml-0.5 text-brand-500" aria-hidden="true">
@@ -112,7 +112,7 @@ export default function FormField({
           {error}
         </p>
       ) : hint ? (
-        <p className="text-xs text-ink-400">{hint}</p>
+        <p className="text-xs text-ink-500 dark:text-dark-text-muted">{hint}</p>
       ) : null}
     </div>
   );

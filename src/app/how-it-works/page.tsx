@@ -40,7 +40,7 @@ export default function HowItWorksPage() {
                   {step.number}
                 </span>
                 <div className="flex-1 rounded-xl bg-page px-4 py-2.5">
-                  <p className="text-sm font-bold text-ink-900">{step.title}</p>
+                  <p className="text-sm font-bold text-ink-900 dark:text-white dark:text-white">{step.title}</p>
                 </div>
               </div>
             ))}
@@ -69,7 +69,7 @@ export default function HowItWorksPage() {
                     {step.number}
                   </span>
                   <div>
-                    <h2 className="text-xl font-bold tracking-tight text-ink-900 sm:text-2xl">
+                    <h2 className="text-xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-2xl">
                       {step.title}
                     </h2>
                     <p className="mt-1 text-sm leading-relaxed text-ink-500">{step.description}</p>
@@ -79,7 +79,7 @@ export default function HowItWorksPage() {
                 <div className="grid gap-6 p-6 sm:p-7 lg:grid-cols-3">
                   {/* agents */}
                   <div>
-                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
                       <Bot className="size-4 text-icon-violet" aria-hidden="true" /> AI Agents on
                       this step
                     </p>
@@ -102,7 +102,7 @@ export default function HowItWorksPage() {
 
                   {/* outputs */}
                   <div>
-                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
                       <Package className="size-4 text-icon-blue" aria-hidden="true" /> Expected
                       outputs
                     </p>
@@ -110,7 +110,7 @@ export default function HowItWorksPage() {
                       {step.outputs.map((output) => (
                         <li
                           key={output}
-                          className="flex items-start gap-2 text-sm leading-relaxed text-ink-600"
+                          className="flex items-start gap-2 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary"
                         >
                           <CheckCircle2
                             className="mt-0.5 size-4 shrink-0 text-icon-teal"
@@ -124,7 +124,7 @@ export default function HowItWorksPage() {
 
                   {/* human involvement */}
                   <div>
-                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+                    <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
                       <UserCheck className="size-4 text-icon-orange" aria-hidden="true" /> Human
                       involvement
                     </p>
@@ -133,7 +133,7 @@ export default function HowItWorksPage() {
                         ["bg-pastel-purple/70", "bg-pastel-blue/70", "bg-pastel-mint/70", "bg-pastel-orange/70", "bg-pastel-pink/70"][i]
                       }`}
                     >
-                      <p className="text-sm leading-relaxed text-ink-600">{step.human}</p>
+                      <p className="text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">{step.human}</p>
                     </div>
                   </div>
                 </div>
@@ -151,7 +151,7 @@ export default function HowItWorksPage() {
               <Bot aria-hidden="true" />
             </IconContainer>
             <div className="flex-1">
-              <h2 className="text-xl font-bold tracking-tight text-ink-900">
+              <h2 className="text-xl font-bold tracking-tight text-ink-900 dark:text-white dark:text-white">
                 Backed by 11 specialised AI agents
               </h2>
               <p className="mt-1 text-sm leading-relaxed text-ink-500">

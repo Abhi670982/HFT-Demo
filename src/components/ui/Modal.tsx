@@ -65,7 +65,7 @@ export default function Modal({ open, onClose, title, children, className }: Mod
               <X className="size-4" aria-hidden="true" />
             </button>
             {title && (
-              <h3 className="pr-10 text-xl font-bold tracking-tight text-ink-900">{title}</h3>
+              <h3 className="pr-10 text-xl font-bold tracking-tight text-ink-900 dark:text-white">{title}</h3>
             )}
             <div className={cn(title && "mt-4")}>{children}</div>
           </motion.div>

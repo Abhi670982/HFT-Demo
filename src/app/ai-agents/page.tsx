@@ -54,7 +54,7 @@ export default function AiAgentsPage() {
             className="relative h-auto w-full rounded-[24px] border border-line object-cover shadow-card dark:border-dark-line"
           />
           <div className="absolute -bottom-5 left-4 animate-floaty rounded-2xl border border-line bg-surface px-4 py-2.5 shadow-card">
-            <p className="text-xs font-bold text-ink-900">🤖 11 agents · one mission</p>
+            <p className="text-xs font-bold text-ink-900 dark:text-white">🤖 11 agents · one mission</p>
             <p className="text-[11px] text-ink-500">Your career, on autopilot + guidance</p>
           </div>
         </div>
@@ -73,7 +73,7 @@ export default function AiAgentsPage() {
                 "rounded-full border px-4 py-2 text-[13px] font-semibold transition-all duration-300",
                 category === cat.id
                   ? "border-transparent bg-gradient-to-r from-brand-600 to-brand-400 text-white shadow-glow"
-                  : "border-line bg-surface text-ink-600 hover:border-brand-200 hover:text-brand-600"
+                  : "border-line bg-surface text-ink-600 dark:text-dark-text-secondary hover:border-brand-200 hover:text-brand-600"
               )}
             >
               {cat.label}

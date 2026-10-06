@@ -82,12 +82,12 @@ export default function OnboardingFormSection() {
               <span className="grid size-16 place-items-center rounded-full bg-pastel-green text-icon-green">
                 <CheckCircle2 className="size-8" aria-hidden="true" />
               </span>
-              <h3 className="text-xl font-bold text-ink-900">
+              <h3 className="text-xl font-bold text-ink-900 dark:text-white dark:text-white">
                 Thanks, {form.name.split(" ")[0]}! We&rsquo;ve got your details.
               </h3>
               <p className="max-w-sm text-sm leading-relaxed text-ink-500">
                 Your search profile has been received. Our team will review it and reach out at{" "}
-                <span className="font-semibold text-ink-900">{form.email}</span> with your next
+                <span className="font-semibold text-ink-900 dark:text-white dark:text-white">{form.email}</span> with your next
                 steps.
               </p>
               <Button variant="secondary" size="md" onClick={reset}>

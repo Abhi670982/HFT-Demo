@@ -28,7 +28,7 @@ export default function PricingSection() {
           </p>
           <ul className="flex flex-col gap-3">
             {valuePoints.map((point) => (
-              <li key={point} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-600">
+              <li key={point} className="flex items-start gap-2.5 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">
                 <CheckCircle2 className="mt-0.5 size-[18px] shrink-0 text-icon-teal" aria-hidden="true" />
                 {point}
               </li>

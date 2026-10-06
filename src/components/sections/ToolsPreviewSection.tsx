@@ -34,8 +34,8 @@ export default function ToolsPreviewSection() {
                 <FileText className="size-4.5" aria-hidden="true" />
               </span>
               <div>
-                <p className="text-sm font-bold text-ink-900">Resume.pdf</p>
-                <p className="text-xs text-ink-400">Uploaded · Software Engineer</p>
+                <p className="text-sm font-bold text-ink-900 dark:text-white dark:text-white">Resume.pdf</p>
+                <p className="text-xs text-ink-500 dark:text-dark-text-muted">Uploaded · Software Engineer</p>
               </div>
             </div>
             {/* fake document lines */}
@@ -57,7 +57,7 @@ export default function ToolsPreviewSection() {
                 ))}
               </div>
             </div>
-            <p className="text-xs leading-relaxed text-ink-400">
+            <p className="text-xs leading-relaxed text-ink-500 dark:text-dark-text-muted">
               Your resume is parsed locally in this demo — nothing leaves your browser.
             </p>
           </div>
@@ -65,7 +65,7 @@ export default function ToolsPreviewSection() {
           {/* JD analysis panel */}
           <div className="flex flex-col gap-5 p-6 sm:p-8">
             <div className="flex items-center justify-between gap-4">
-              <p className="flex items-center gap-2 text-sm font-bold text-ink-900">
+              <p className="flex items-center gap-2 text-sm font-bold text-ink-900 dark:text-white dark:text-white">
                 <GaugeCircle className="size-4.5 text-icon-violet" aria-hidden="true" />
                 JD Analysis
               </p>
@@ -78,8 +78,8 @@ export default function ToolsPreviewSection() {
               {matchBars.map((bar) => (
                 <div key={bar.label}>
                   <div className="mb-1.5 flex items-center justify-between text-xs font-semibold">
-                    <span className="text-ink-600">{bar.label}</span>
-                    <span className="text-ink-900">{bar.value}%</span>
+                    <span className="text-ink-600 dark:text-dark-text-secondary">{bar.label}</span>
+                    <span className="text-ink-900 dark:text-white dark:text-white">{bar.value}%</span>
                   </div>
                   <div className="h-2 w-full overflow-hidden rounded-full bg-line">
                     <div
@@ -99,7 +99,7 @@ export default function ToolsPreviewSection() {
                 {["System Design", "Kubernetes"].map((k) => (
                   <span
                     key={k}
-                    className="rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-ink-700"
+                    className="rounded-full bg-white px-2.5 py-1 text-[11px] font-semibold text-ink-700 dark:text-dark-text-secondary"
                   >
                     {k}
                   </span>
@@ -121,7 +121,7 @@ export default function ToolsPreviewSection() {
           Try Resume / JD Analysis
         </Button>
       </div>
-      <p className="mx-auto mt-3 flex max-w-md items-center justify-center gap-1.5 text-center text-xs text-ink-400">
+      <p className="mx-auto mt-3 flex max-w-md items-center justify-center gap-1.5 text-center text-xs text-ink-500 dark:text-dark-text-muted">
         <BadgeCheck className="size-3.5 shrink-0 text-icon-teal" aria-hidden="true" />
         Interactive demo — full analyzer on the Tools page
         <ArrowRight className="size-3" aria-hidden="true" />

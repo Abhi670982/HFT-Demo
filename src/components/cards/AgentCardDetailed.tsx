@@ -35,10 +35,10 @@ export default function AgentCardDetailed({ agent, expanded, onToggle }: AgentCa
               <Icon aria-hidden="true" />
             </IconContainer>
             <div>
-              <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900">
+              <h3 className="text-[17px] font-bold leading-snug tracking-tight text-ink-900 dark:text-white dark:text-white">
                 {agent.name}
               </h3>
-              <p className="text-[13px] font-medium text-brand-600">{agent.tagline}</p>
+              <p className="text-[13px] font-medium text-brand-700 dark:text-brand-300">{agent.tagline}</p>
             </div>
           </div>
           <span
@@ -66,22 +66,22 @@ export default function AgentCardDetailed({ agent, expanded, onToggle }: AgentCa
           >
             <div className="flex flex-col gap-4 border-t border-line px-6 pb-6 pt-5">
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
                   Problem solved
                 </p>
-                <p className="mt-1.5 flex items-start gap-2 text-sm leading-relaxed text-ink-600">
+                <p className="mt-1.5 flex items-start gap-2 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">
                   <CircleDot className="mt-0.5 size-4 shrink-0 text-icon-orange" aria-hidden="true" />
                   {agent.problemSolved}
                 </p>
               </div>
 
               <div>
-                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-400">
+                <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
                   What it does
                 </p>
                 <ul className="mt-1.5 flex flex-col gap-1.5">
                   {agent.whatItDoes.map((item) => (
-                    <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-ink-600">
+                    <li key={item} className="flex items-start gap-2 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">
                       <CheckCircle2 className="mt-0.5 size-4 shrink-0 text-icon-teal" aria-hidden="true" />
                       {item}
                     </li>
@@ -94,13 +94,13 @@ export default function AgentCardDetailed({ agent, expanded, onToggle }: AgentCa
                   <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-icon-blue">
                     <Package className="size-3.5" aria-hidden="true" /> Output / Value
                   </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{agent.output}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">{agent.output}</p>
                 </div>
                 <div className="rounded-xl bg-pastel-purple/70 p-3.5">
                   <p className="flex items-center gap-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-icon-violet">
                     <Package className="size-3.5" aria-hidden="true" /> Where it fits
                   </p>
-                  <p className="mt-1.5 text-sm leading-relaxed text-ink-600">{agent.journey}</p>
+                  <p className="mt-1.5 text-sm leading-relaxed text-ink-600 dark:text-dark-text-secondary">{agent.journey}</p>
                 </div>
               </div>
             </div>

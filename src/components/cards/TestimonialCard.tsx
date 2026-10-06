@@ -56,7 +56,7 @@ export default function TestimonialCard({
         <div className="flex min-w-0 flex-col">
           <span
             className={cn(
-              "font-bold tracking-tight text-ink-900 dark:text-white",
+              "font-bold tracking-tight text-ink-900 dark:text-white dark:text-white",
               featured ? "text-sm" : "text-[13px]"
             )}
           >

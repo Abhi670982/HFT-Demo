@@ -35,7 +35,7 @@ export default function HowItWorksWorkflow({ steps, className }: HowItWorksWorkf
               {step.number}
             </span>
             <div className="flex flex-col gap-1.5 rounded-card border border-line bg-surface p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card lg:items-center">
-              <h3 className="text-[15px] font-bold leading-snug tracking-tight text-ink-900">
+              <h3 className="text-[15px] font-bold leading-snug tracking-tight text-ink-900 dark:text-white dark:text-white">
                 {step.title}
               </h3>
               <p className="text-[13px] leading-relaxed text-ink-500">{step.description}</p>

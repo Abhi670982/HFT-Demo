@@ -106,7 +106,7 @@ export default function Navbar() {
                 "rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors",
                 isActive(link.href)
                   ? "bg-brand-50 font-semibold text-brand-600 dark:bg-brand-600/20 dark:text-brand-300"
-                  : "text-ink-600 hover:bg-pastel-lavender/60 hover:text-ink-900 dark:text-dark-text-secondary dark:hover:text-white"
+                  : "text-ink-600 dark:text-dark-text-secondary hover:bg-pastel-lavender/60 hover:text-ink-900 dark:text-dark-text-secondary dark:hover:text-white"
               )}
             >
               {link.label}
@@ -124,7 +124,7 @@ export default function Navbar() {
                 "flex items-center gap-1 rounded-full px-3 py-1.5 text-[13px] font-medium transition-colors",
                 resourcesOpen
                   ? "bg-brand-50 font-semibold text-brand-600 dark:bg-brand-600/20 dark:text-brand-300"
-                  : "text-ink-600 hover:bg-pastel-lavender/60 hover:text-ink-900 dark:text-dark-text-secondary dark:hover:text-white"
+                  : "text-ink-600 dark:text-dark-text-secondary hover:bg-pastel-lavender/60 hover:text-ink-900 dark:text-dark-text-secondary dark:hover:text-white"
               )}
             >
               Resources
@@ -147,7 +147,7 @@ export default function Navbar() {
                       key={item.label}
                       href={item.href}
                       onClick={() => setResourcesOpen(false)}
-                      className="block rounded-xl px-3.5 py-2.5 text-[13px] font-medium text-ink-600 transition-colors hover:bg-page hover:text-brand-600 dark:text-dark-text-secondary dark:hover:bg-white/5 dark:hover:text-brand-300"
+                      className="block rounded-xl px-3.5 py-2.5 text-[13px] font-medium text-ink-600 dark:text-dark-text-secondary transition-colors hover:bg-page hover:text-brand-600 dark:text-dark-text-secondary dark:hover:bg-white/5 dark:hover:text-brand-300"
                     >
                       {item.label}
                     </Link>
@@ -211,7 +211,7 @@ export default function Navbar() {
                       "flex items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
                       isActive(link.href)
                         ? "bg-brand-50 font-semibold text-brand-600 dark:bg-brand-600/20 dark:text-brand-300"
-                        : "text-ink-700 hover:bg-page dark:text-dark-text-secondary dark:hover:bg-white/5"
+                        : "text-ink-700 dark:text-dark-text-secondary hover:bg-page dark:text-dark-text-secondary dark:hover:bg-white/5"
                     )}
                   >
                     {link.label}
@@ -227,7 +227,7 @@ export default function Navbar() {
                   onClick={() => setMobileResources((v) => !v)}
                   className={cn(
                     "flex w-full items-center justify-between rounded-xl px-4 py-2.5 text-sm font-medium transition-colors",
-                    "text-ink-700 hover:bg-page dark:text-dark-text-secondary dark:hover:bg-white/5"
+                    "text-ink-700 dark:text-dark-text-secondary hover:bg-page dark:text-dark-text-secondary dark:hover:bg-white/5"
                   )}
                 >
                   Resources

@@ -26,7 +26,7 @@ export default function HostSection() {
             />
             <Image
               src={assets.ceo}
-              alt="Mukul Sharma — CEO & Co-Founder of Hunt For Tomorrow"
+              alt="Mukul Sharma — Founder of Hunt For Tomorrow"
               width={256}
               height={256}
               className="relative w-full rounded-[24px] border border-line object-cover"
@@ -37,11 +37,11 @@ export default function HostSection() {
           <div className="flex flex-col items-start gap-4">
             <Pill>Meet Your Host</Pill>
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-ink-900 dark:text-white dark:text-white sm:text-3xl">
                 Mukul Sharma
               </h2>
               <p className="mt-1 text-sm font-semibold text-brand-600">
-                CEO &amp; Co-Founder — Hunt For Tomorrow
+                Founder — Hunt For Tomorrow
               </p>
             </div>
             <p className="max-w-xl text-[15px] leading-relaxed text-ink-500">
@@ -51,7 +51,7 @@ export default function HostSection() {
             </p>
             <ul className="flex flex-col gap-2.5 pt-1">
               {credentials.map((c) => (
-                <li key={c.text} className="flex items-start gap-2.5 text-sm font-medium text-ink-700">
+                <li key={c.text} className="flex items-start gap-2.5 text-sm font-medium text-ink-700 dark:text-dark-text-secondary">
                   <span className="mt-0.5 grid size-7 shrink-0 place-items-center rounded-lg bg-pastel-lavender text-icon-violet">
                     <c.icon className="size-4" aria-hidden="true" />
                   </span>

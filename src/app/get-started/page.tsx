@@ -206,7 +206,7 @@ export default function GetStartedPage() {
                 <span className="grid size-16 place-items-center rounded-full bg-pastel-green text-icon-green">
                   <PartyPopper className="size-8" aria-hidden="true" />
                 </span>
-                <h2 className="text-2xl font-extrabold tracking-tight text-ink-900">
+                <h2 className="text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white dark:text-white">
                   Welcome aboard, {data.name.split(" ")[0]}!
                 </h2>
                 <p className="max-w-md text-sm leading-relaxed text-ink-500">
@@ -266,7 +266,7 @@ export default function GetStartedPage() {
                           <current.icon className="size-5" aria-hidden="true" />
                         </span>
                         <div>
-                          <h2 className="text-lg font-bold tracking-tight text-ink-900">
+                          <h2 className="text-lg font-bold tracking-tight text-ink-900 dark:text-white dark:text-white">
                             {current.title}
                           </h2>
                           <p className="text-[13px] text-ink-500">{current.caption}</p>

@@ -89,7 +89,7 @@ export default function AcademyPage() {
               <IconContainer tone="orange" size="lg">
                 <BookOpen aria-hidden="true" />
               </IconContainer>
-              <h2 className="text-2xl font-bold tracking-tight text-ink-900 sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
                 Resources for every stage
               </h2>
               <p className="text-[15px] leading-relaxed text-ink-500">
@@ -120,7 +120,7 @@ export default function AcademyPage() {
                     <card.icon aria-hidden="true" />
                   </IconContainer>
                   <div>
-                    <h3 className="text-[15px] font-bold tracking-tight text-ink-900">{card.title}</h3>
+                    <h3 className="text-[15px] font-bold tracking-tight text-ink-900 dark:text-white">{card.title}</h3>
                     <p className="mt-1 text-sm leading-relaxed text-ink-500">{card.copy}</p>
                   </div>
                 </div>
@@ -138,7 +138,7 @@ export default function AcademyPage() {
               <GraduationCap aria-hidden="true" />
             </IconContainer>
             <div className="flex-1">
-              <h2 className="text-xl font-bold tracking-tight text-ink-900">
+              <h2 className="text-xl font-bold tracking-tight text-ink-900 dark:text-white">
                 Included with your HuntForTomorrow journey
               </h2>
               <p className="mt-1 text-sm leading-relaxed text-ink-500">
