@@ -29,22 +29,22 @@ const features = [
 export default function AcademySection() {
   return (
     <section className="shell-pad py-12 sm:py-16">
-      <div className="grid items-center gap-10 lg:grid-cols-[0.95fr_1.05fr]">
-        <Reveal className="flex flex-col items-start gap-6">
-          <div className="flex flex-col gap-4">
-            <Pill>HFT Academy</Pill>
+      <div className="grid min-w-0 items-center gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:gap-10">
+        <Reveal className="flex min-w-0 flex-col items-start gap-5 sm:gap-6">
+          <div className="flex min-w-0 flex-col gap-3.5 sm:gap-4">
+            <Pill className="self-start">HFT Academy</Pill>
             <h2 className="text-balance text-2xl font-bold leading-[1.18] tracking-tight text-ink-900 dark:text-white sm:text-3xl lg:text-[32px]">
               Learn. Upskill. <span className="text-gradient">Get Ahead.</span>
             </h2>
-            <p className="max-w-xl text-[15px] leading-relaxed text-ink-500 sm:text-base">
+            <p className="max-w-xl text-sm leading-relaxed text-ink-500 sm:text-base">
               Practical learning resources and programmes to help you build the skills that
               today&rsquo;s employers are looking for.
             </p>
           </div>
 
-          <div className="grid w-full gap-4 sm:grid-cols-3">
+          <div className="grid w-full min-w-0 gap-3 sm:grid-cols-3 sm:gap-4">
             {features.map((feature) => (
-              <FeatureCard key={feature.title} {...feature} className="p-5" />
+              <FeatureCard key={feature.title} {...feature} className="min-w-0 p-4 sm:p-5" />
             ))}
           </div>
 
@@ -53,7 +53,7 @@ export default function AcademySection() {
           </Button>
         </Reveal>
 
-        <Reveal delay={0.12}>
+        <Reveal delay={0.12} className="min-w-0">
           <DashboardPreview />
         </Reveal>
       </div>

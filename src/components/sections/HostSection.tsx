@@ -17,27 +17,29 @@ export default function HostSection() {
   return (
     <section id="host" className="shell-pad scroll-mt-28 py-12 sm:py-16">
       <Reveal>
-        <div className="mx-auto grid max-w-5xl items-center gap-8 overflow-hidden rounded-panel border border-line bg-surface p-7 shadow-card sm:p-10 md:grid-cols-[auto_1fr]">
-          {/* portrait */}
-          <div className="relative mx-auto w-56 shrink-0 md:w-64">
+        <div className="mx-auto grid min-w-0 max-w-5xl items-center gap-8 overflow-hidden rounded-panel border border-line bg-surface p-7 shadow-card sm:p-10 md:grid-cols-[auto_1fr]">
+          {/* portrait — fixed aspect frame keeps the image stable and centered */}
+          <div className="relative mx-auto aspect-[4/5] w-56 shrink-0 sm:w-60 md:w-64">
             <div
               aria-hidden="true"
               className="absolute -left-3 -top-3 size-full rounded-[26px] bg-gradient-to-br from-brand-200 to-brand-400/40"
             />
-            <Image
-              src={assets.ceo}
-              alt="Mukul Sharma — Founder of Hunt For Tomorrow"
-              width={256}
-              height={256}
-              className="relative w-full rounded-[24px] border border-line object-cover"
-            />
+            <div className="relative size-full overflow-hidden rounded-[24px] border border-line shadow-soft">
+              <Image
+                src={assets.ceo}
+                alt="Mukul Sharma — Founder of Hunt For Tomorrow"
+                fill
+                sizes="(max-width: 640px) 224px, 256px"
+                className="object-cover object-center"
+              />
+            </div>
           </div>
 
           {/* content */}
           <div className="flex flex-col items-start gap-4">
             <Pill>Meet Your Host</Pill>
             <div>
-              <h2 className="text-2xl font-bold tracking-tight text-ink-900 dark:text-white dark:text-white sm:text-3xl">
+              <h2 className="text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
                 Mukul Sharma
               </h2>
               <p className="mt-1 text-sm font-semibold text-brand-600">

@@ -148,18 +148,20 @@ export default function AboutPage() {
           {leadership.map((leader) => (
             <Reveal key={leader.name} className="w-full max-w-4xl">
               <div className="grid items-center gap-7 overflow-hidden rounded-panel border border-line bg-surface p-6 shadow-card dark:border-dark-line sm:p-8 md:grid-cols-[auto_1fr]">
-                <div className="relative mx-auto w-48 shrink-0 sm:w-56">
+                <div className="relative mx-auto aspect-[4/5] w-44 shrink-0 sm:w-52 md:w-56">
                   <div
                     aria-hidden="true"
                     className="absolute -left-2.5 -top-2.5 size-full rounded-[22px] bg-gradient-to-br from-brand-200 to-brand-400/40 dark:from-brand-600/40 dark:to-brand-400/20"
                   />
-                  <Image
-                    src={leader.image}
-                    alt={`${leader.name} — ${leader.role}`}
-                    width={256}
-                    height={256}
-                    className="relative w-full rounded-[20px] border border-line object-cover object-top dark:border-dark-line"
-                  />
+                  <div className="relative size-full overflow-hidden rounded-[20px] border border-line shadow-soft dark:border-dark-line">
+                    <Image
+                      src={leader.image}
+                      alt={`${leader.name} — ${leader.role}`}
+                      fill
+                      sizes="(max-width: 640px) 176px, 224px"
+                      className="object-cover object-center"
+                    />
+                  </div>
                 </div>
                 <div className="flex flex-col items-start gap-3">
                   <div>

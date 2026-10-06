@@ -30,19 +30,19 @@ export default function DashboardPreview({ className }: { className?: string }) 
       )}
     >
       {/* window header */}
-      <div className="flex items-center justify-between gap-3 border-b border-line bg-page/60 px-5 py-3.5">
+      <div className="flex min-w-0 items-center justify-between gap-2 border-b border-line bg-page/60 px-4 py-3 sm:gap-3 sm:px-5 sm:py-3.5">
         <div className="flex items-center gap-2.5">
           <span className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-brand-600 to-brand-400 text-white">
             <GraduationCap className="size-4" aria-hidden="true" />
           </span>
-          <span className="text-sm font-bold text-ink-900 dark:text-white dark:text-white">HFT Academy</span>
+          <span className="text-sm font-bold text-ink-900 dark:text-white">HFT Academy</span>
         </div>
         <span className="rounded-full bg-pastel-mint px-2.5 py-1 text-[11px] font-semibold text-icon-teal">
           Continue learning
         </span>
       </div>
 
-      <div className="grid gap-5 p-5 sm:grid-cols-[1.4fr_1fr] sm:p-6">
+      <div className="grid min-w-0 gap-5 p-5 sm:grid-cols-[1.4fr_1fr] sm:p-6">
         {/* course list */}
         <div className="flex flex-col gap-3">
           {courses.map((course) => (
@@ -54,7 +54,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
                 <PlayCircle className="size-5" aria-hidden="true" />
               </span>
               <div className="min-w-0 flex-1">
-                <p className="truncate text-[13px] font-semibold text-ink-900 dark:text-white dark:text-white">{course.title}</p>
+                <p className="truncate text-[13px] font-semibold text-ink-900 dark:text-white">{course.title}</p>
                 <div className="mt-2 h-1.5 w-full overflow-hidden rounded-full bg-line">
                   <div
                     className={cn("h-full rounded-full transition-all", course.tone)}
@@ -68,7 +68,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
         </div>
 
         {/* right column */}
-        <div className="flex flex-col gap-3">
+        <div className="flex min-w-0 flex-col gap-3">
           <div className="grid grid-cols-1 gap-3">
             {stats.map((stat) => (
               <div
@@ -79,7 +79,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
                   <stat.icon className="size-4" aria-hidden="true" />
                 </span>
                 <span className="text-xs font-medium text-ink-500">{stat.label}</span>
-                <span className="ml-auto text-sm font-bold text-ink-900 dark:text-white dark:text-white">{stat.value}</span>
+                <span className="ml-auto text-sm font-bold text-ink-900 dark:text-white">{stat.value}</span>
               </div>
             ))}
           </div>

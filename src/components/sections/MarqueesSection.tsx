@@ -1,13 +1,12 @@
-import { featuredInMedia, placedAtCompanies, talentFromCompanies, trustedCompanies } from "@/lib/data/logos";
+import { featuredInMedia, placedAtCompanies, talentFromCompanies } from "@/lib/data/logos";
 import Marquee from "@/components/ui/Marquee";
 import Reveal from "@/components/ui/Reveal";
 import { BadgeCheck, Newspaper, TrendingUp } from "lucide-react";
 
 /**
- * Homepage keeps only the two approved strips:
- *  - People Placed At
- *  - Trusted by Job Seekers
- * (Featured In + Worked With Talent marquees live on the About page.)
+ * Homepage keeps only the approved "People Placed At" strip.
+ * (Trusted by Job Seekers, Featured In and Worked With Talent marquees
+ * live on the About page.)
  */
 export default function MarqueesSection({
   showFeaturedIn = false,
@@ -17,7 +16,7 @@ export default function MarqueesSection({
   showTalentFrom?: boolean;
 } = {}) {
   return (
-    <section className="flex flex-col gap-2 py-10 sm:py-12">
+    <section className="flex flex-col gap-2 py-8 sm:py-10">
       {/* People placed at */}
       <div className="shell-pad">
         <Reveal className="flex flex-col items-center gap-2 text-center">
@@ -30,19 +29,6 @@ export default function MarqueesSection({
         </Reveal>
       </div>
       <Marquee items={placedAtCompanies} />
-
-      {/* Trusted strip */}
-      <div className="shell-pad pt-5">
-        <Reveal className="flex flex-col items-center gap-2 text-center">
-          <span className="flex items-center gap-2 text-[10.5px] font-bold uppercase tracking-[0.18em] text-icon-violet">
-            <TrendingUp className="size-4" aria-hidden="true" /> Trusted By Job Seekers
-          </span>
-          <h2 className="mx-auto max-w-xl text-lg font-bold tracking-tight text-ink-900 dark:text-white sm:text-xl">
-            Trusted by job seekers working toward opportunities at leading companies
-          </h2>
-        </Reveal>
-      </div>
-      <Marquee items={trustedCompanies} slow />
 
       {/* Optional extras (used on the About page) */}
       {showTalentFrom && (

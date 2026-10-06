@@ -17,7 +17,7 @@ export default function Marquee({ items, dark = false, slow = false, className }
   return (
     <div
       className={cn(
-        "group relative overflow-hidden py-1",
+        "group relative w-full overflow-hidden py-1",
         dark ? "text-white/70" : "text-ink-500",
         className
       )}
