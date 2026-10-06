@@ -21,18 +21,6 @@ export const placedAtLogos: BrandLogo[] = [
   { name: "Deloitte" },
   { name: "Blinkit" },
   { name: "P&G" },
-  { name: "Flipkart", src: "flipkart" },
-];
-
-/* ---------- Trusted by job seekers (about) ---------- */
-export const trustedLogos: BrandLogo[] = [
-  { name: "Google", src: "google" },
-  { name: "Meta", src: "meta" },
-  { name: "Amazon" },
-  { name: "Microsoft" },
-  { name: "Deloitte" },
-  { name: "Blinkit" },
-  { name: "P&G" },
   { name: "Adobe", src: "adobe" },
   { name: "Flipkart", src: "flipkart" },
 ];
