@@ -22,7 +22,7 @@ export default function Marquee({ items, dark = false, slow = false, className }
     <div
       className={cn(
         "group relative w-full overflow-hidden py-2",
-        dark ? "text-white/70" : "text-ink-500",
+        dark ? "text-white/90" : "text-ink-500",
         className
       )}
       style={{

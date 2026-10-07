@@ -45,7 +45,7 @@ export default function HumanAiSection() {
                     <node.icon className="size-5" aria-hidden="true" />
                   </span>
                   <p className="text-sm font-bold text-white">{node.label}</p>
-                  <p className="text-xs text-white/55">{node.sub}</p>
+                  <p className="text-xs text-white/90">{node.sub}</p>
                 </div>
                 {i < flow.length - 1 && (
                   <div className="flex items-center justify-center lg:px-1">
@@ -64,7 +64,7 @@ export default function HumanAiSection() {
             ))}
           </div>
 
-          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-white/60">
+          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-white/80">
             AI automation handles discovery, optimisation and tracking. Human experience guides
             every decision that shapes your career.
           </p>

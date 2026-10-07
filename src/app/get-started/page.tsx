@@ -175,12 +175,12 @@ export default function GetStartedPage() {
               <h1 className="text-3xl font-extrabold tracking-tight sm:text-4xl">
                 Let&rsquo;s build your brighter tomorrow
               </h1>
-              <p className="text-sm leading-relaxed text-white/70">
+              <p className="text-sm leading-relaxed text-white/90">
                 Six quick steps. Your answers tune your AI agents, your strategy and your first
                 session — nothing generic, everything yours.
               </p>
             </div>
-            <ul className="hidden flex-col gap-3 text-sm text-white/75 lg:flex">
+            <ul className="hidden flex-col gap-3 text-sm text-white/90 lg:flex">
               {[
                 "Takes about 2 minutes",
                 "Your data stays in this demo",

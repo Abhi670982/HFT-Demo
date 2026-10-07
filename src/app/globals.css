@@ -51,6 +51,13 @@
   --color-icon-green: #4caf50;
   --color-icon-rose: #e2554a;
 
+  /* Explicit Dark Mode Tokens used across components */
+  --color-dark-surface: #151535; /* Slightly brighter than surface for contrast */
+  --color-dark-line: #2f2f56; /* Stronger line */
+  --color-dark-text: #ffffff; /* Crisp white */
+  --color-dark-text-secondary: #d4d7ec; /* Light slate */
+  --color-dark-text-muted: #b4b8d4; /* Mid-light slate */
+
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-hand: var(--font-caveat), "Segoe Script", cursive;
 
@@ -109,11 +116,11 @@
     --color-line: #232345;
     --color-line-strong: #2f2f56;
 
-    --color-ink-900: #f2f3fb;
-    --color-ink-700: #d4d7ec;
-    --color-ink-600: #b4b8d4;
-    --color-ink-500: #8f94b8;
-    --color-ink-400: #6a6f94;
+    --color-ink-900: #ffffff;
+    --color-ink-700: #e2e5f5;
+    --color-ink-600: #c6cbe6;
+    --color-ink-500: #aeb4d8;
+    --color-ink-400: #8f94b8;
 
     --color-pastel-blue: #16233f;
     --color-pastel-lavender: #1f1a3f;

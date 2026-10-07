@@ -56,7 +56,7 @@ export default function StatsCounter({
       >
         {text}
       </span>
-      <span className={cn("text-sm font-medium", dark ? "text-white/60" : "text-ink-500")}>
+      <span className={cn("text-sm font-medium", dark ? "text-white/80" : "text-ink-500")}>
         {label}
       </span>
     </div>

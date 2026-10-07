@@ -39,7 +39,7 @@ export default function PricingSection() {
         {/* CTA panel */}
         <div className="flex flex-col justify-center gap-4 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 p-7 text-white sm:p-9">
           <h3 className="text-2xl font-bold tracking-tight">Ready when you are.</h3>
-          <p className="text-sm leading-relaxed text-white/70">
+          <p className="text-sm leading-relaxed text-white/90">
             Pricing is shared during your free consultation — transparently, based on your career
             stage and the support you need. No hidden costs, ever.
           </p>

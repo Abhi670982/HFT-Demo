@@ -51,7 +51,7 @@ export default function CTASection({
             <h2 className="text-balance text-2xl font-bold leading-[1.15] tracking-tight text-white sm:text-3xl lg:text-[34px]">
               {title}
             </h2>
-            <p className="max-w-xl text-[15px] leading-relaxed text-white/70 sm:text-base">
+            <p className="max-w-xl text-[15px] leading-relaxed text-white/90 sm:text-base">
               {description}
             </p>
             <div className="flex flex-wrap items-center gap-3 pt-1">

@@ -144,7 +144,7 @@ export default function ClientAccessPage() {
               <h2 className="text-2xl font-bold tracking-tight">
                 Your entire search, one dashboard
               </h2>
-              <p className="text-sm leading-relaxed text-white/70">
+              <p className="text-sm leading-relaxed text-white/90">
                 Everything your agents and mentors produce — organised, always current:
               </p>
               <ul className="mt-1 grid grid-cols-2 gap-2.5">
@@ -176,7 +176,7 @@ export default function ClientAccessPage() {
                 className="rounded-xl object-contain"
                 aria-hidden="true"
               />
-              <p className="text-[13px] leading-relaxed text-white/70">
+              <p className="text-[13px] leading-relaxed text-white/90">
                 HuntForTomorrow — Smarter Job Search for a Brighter Tomorrow
               </p>
             </div>

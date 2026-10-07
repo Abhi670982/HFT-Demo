@@ -37,7 +37,7 @@ const socialIcons = [LinkedinIcon, InstagramIcon, XIcon, YoutubeIcon];
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-navy-950 text-white/70">
+    <footer className="w-full bg-navy-950 text-white/90">
       <div className="shell-pad pb-7 pt-12 sm:pt-14">
         <div className="grid gap-10 lg:grid-cols-[1.2fr_2fr]">
           {/* Brand */}
@@ -54,7 +54,7 @@ export default function Footer() {
                 HuntForTomorrow
               </span>
             </Link>
-            <p className="mt-4 text-[13px] leading-relaxed text-white/60">
+            <p className="mt-4 text-[13px] leading-relaxed text-white/80">
               {siteTagline}. An AI-powered career ecosystem with 11 specialised agents, human
               guidance and end-to-end support — built to land you the right opportunities faster.
             </p>
@@ -68,7 +68,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={`${siteName} on ${social.label}`}
-                    className="grid size-9 place-items-center rounded-xl border border-white/10 bg-white/5 text-white/70 transition-all hover:-translate-y-0.5 hover:border-brand-400/50 hover:bg-brand-600/20 hover:text-white"
+                    className="grid size-9 place-items-center rounded-xl border border-white/10 bg-white/5 text-white/90 transition-all hover:-translate-y-0.5 hover:border-brand-400/50 hover:bg-brand-600/20 hover:text-white"
                   >
                     <Icon className="size-4" aria-hidden="true" />
                   </a>
@@ -89,7 +89,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-[13px] text-white/60 transition-colors hover:text-brand-300"
+                        className="text-[13px] text-white/80 transition-colors hover:text-brand-300"
                       >
                         {link.label}
                       </Link>
@@ -105,7 +105,7 @@ export default function Footer() {
           <p className="text-xs">
             © {new Date().getFullYear()} {siteName} — {siteTagline}
           </p>
-          <p className="text-xs text-white/40">Built with AI + human care, for your career.</p>
+          <p className="text-xs text-white/80">Built with AI + human care, for your career.</p>
         </div>
       </div>
     </footer>

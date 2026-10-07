@@ -58,11 +58,11 @@ export default function OnboardingFormSection() {
           <h2 className="text-[28px] font-bold leading-tight tracking-tight sm:text-[34px]">
             Tell us about your search
           </h2>
-          <p className="text-sm leading-relaxed text-white/70 sm:text-[15px]">
+          <p className="text-sm leading-relaxed text-white/90 sm:text-[15px]">
             Share a few details and the HuntForTomorrow team will map the right starting point for
             your journey — the right agents, the right strategy and the right guidance.
           </p>
-          <ul className="mt-2 flex flex-col gap-2.5 text-sm text-white/75">
+          <ul className="mt-2 flex flex-col gap-2.5 text-sm text-white/90">
             <li className="flex items-center gap-2">
               <span className="size-1.5 rounded-full bg-brand-400" /> A personalised starting plan
             </li>

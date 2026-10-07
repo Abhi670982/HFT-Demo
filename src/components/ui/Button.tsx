@@ -7,7 +7,7 @@ type Variant = "primary" | "secondary" | "ghost" | "white" | "dark";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:pointer-events-none disabled:opacity-60";
+  "group inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-xl font-semibold transition-all duration-300 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 disabled:pointer-events-none disabled:opacity-80";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -73,7 +73,7 @@ export default function Button({
         title="Coming soon"
         className={cn(
           classes,
-          "cursor-not-allowed opacity-60 saturate-[0.6] dark:opacity-50 dark:saturate-[0.5]"
+          "cursor-not-allowed opacity-80 saturate-[0.6] dark:opacity-75 dark:saturate-[0.5]"
         )}
       >
         {content}
