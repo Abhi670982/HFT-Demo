@@ -7,24 +7,56 @@ import {
   FileText,
   GaugeCircle,
   Lightbulb,
+  LoaderCircle,
   RotateCcw,
   Target,
   Upload,
+  UserRound,
   Zap,
 } from "lucide-react";
-import { useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react";
+import { useEffect, useRef, useState, type ChangeEvent, type DragEvent } from "react";
 import {
   analyzeResumeAndJd,
   SAMPLE_JD,
   SAMPLE_RESUME,
   type AnalysisResult,
 } from "@/lib/analyzer";
+import { ResumeToolError, toUserMessage } from "@/lib/resume/errors";
+import { extractResumeFile, RESUME_FILE_ACCEPT } from "@/lib/resume/file";
+import type { ParsedResume, ResumeSection } from "@/lib/resume/parse";
+import { loadBrowserPdfJs } from "@/lib/resume/pdfjsBrowser";
+import { validateJobDescription, validateResumeText } from "@/lib/resume/validate";
 import { cn } from "@/lib/utils";
 import Button from "@/components/ui/Button";
 import FormField from "@/components/ui/FormField";
 import IconContainer from "@/components/ui/IconContainer";
 
 type Phase = "input" | "analyzing" | "results";
+type UploadStage = "reading" | "parsing" | "validating";
+
+/** The analysis and the exact resume it was computed from — always replaced together. */
+interface Report {
+  resume: ParsedResume;
+  fileName: string | null;
+  analysis: AnalysisResult;
+}
+
+const UPLOAD_STAGE_LABEL: Record<UploadStage, string> = {
+  reading: "Reading file…",
+  parsing: "Extracting text…",
+  validating: "Checking it's a resume…",
+};
+
+const SECTION_LABEL: Record<ResumeSection, string> = {
+  summary: "Summary",
+  experience: "Experience",
+  education: "Education",
+  skills: "Skills",
+  projects: "Projects",
+  certifications: "Certifications",
+  achievements: "Achievements",
+  personal: "Personal details",
+};
 
 function ScoreRing({ score }: { score: number }) {
   return (
@@ -80,7 +112,7 @@ function MatchBar({ label, value }: { label: string; value: number }) {
   );
 }
 
-function ChipList({ items, tone }: { items: string[]; tone: "good" | "warn" }) {
+function ChipList({ items, tone }: { items: string[]; tone: "good" | "warn" | "neutral" }) {
   if (!items.length)
     return <p className="text-sm text-ink-500 dark:text-dark-text-muted">Nothing to show here.</p>;
   return (
@@ -90,7 +122,11 @@ function ChipList({ items, tone }: { items: string[]; tone: "good" | "warn" }) {
           key={item}
           className={cn(
             "rounded-full px-3 py-1.5 text-xs font-semibold",
-            tone === "good" ? "bg-pastel-green text-icon-teal" : "bg-pastel-orange text-icon-orange"
+            tone === "good"
+              ? "bg-pastel-green text-icon-teal"
+              : tone === "warn"
+                ? "bg-pastel-orange text-icon-orange"
+                : "bg-brand-50 text-brand-700 dark:bg-brand-600/20 dark:text-brand-200"
           )}
         >
           {item}
@@ -101,7 +137,7 @@ function ChipList({ items, tone }: { items: string[]; tone: "good" | "warn" }) {
 }
 
 const STEPS = [
-  { number: "1", title: "Upload Resume", hint: "TXT or paste your resume text" },
+  { number: "1", title: "Upload Resume", hint: "PDF, DOCX, TXT or paste text" },
   { number: "2", title: "Paste Job Description", hint: "The role you're targeting" },
   { number: "3", title: "Click Analyze", hint: "Runs instantly in your browser" },
   { number: "4", title: "Get Results", hint: "Score, gaps & recommendations" },
@@ -114,78 +150,140 @@ export default function ToolAnalyzer() {
   const [fileName, setFileName] = useState<string | null>(null);
   const [resumeError, setResumeError] = useState<string | null>(null);
   const [jdError, setJdError] = useState<string | null>(null);
+  const [formError, setFormError] = useState<string | null>(null);
+  const [uploadStage, setUploadStage] = useState<UploadStage | null>(null);
   const [dragging, setDragging] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [result, setResult] = useState<AnalysisResult | null>(null);
+  const [report, setReport] = useState<Report | null>(null);
+  /** Bumped to invalidate an in-flight upload (newer upload, manual edit, sample, unmount). */
+  const uploadTokenRef = useRef(0);
+  const analyzeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const canAnalyze = useMemo(
-    () => resumeText.trim().length >= 80 && jdText.trim().length >= 80,
-    [resumeText, jdText]
+  useEffect(
+    () => () => {
+      uploadTokenRef.current++;
+      if (analyzeTimerRef.current) clearTimeout(analyzeTimerRef.current);
+    },
+    []
   );
 
-  const readFile = (file: File) => {
-    if (!/\.(txt|md)$/i.test(file.name)) {
-      setResumeError("Demo supports .txt / .md files — or simply paste your resume text below.");
-      return;
+  const busy = uploadStage !== null || phase === "analyzing";
+  const canAnalyze = !busy && resumeText.trim().length > 0 && jdText.trim().length > 0;
+
+  const cancelUpload = () => {
+    uploadTokenRef.current++;
+    setUploadStage(null);
+  };
+
+  const readFile = async (file: File) => {
+    if (busy) return;
+    const token = ++uploadTokenRef.current;
+    const isCurrent = () => token === uploadTokenRef.current;
+    setResumeError(null);
+    setFormError(null);
+    setUploadStage("reading");
+    try {
+      const extracted = await extractResumeFile(file, loadBrowserPdfJs, () => {
+        if (isCurrent()) setUploadStage("parsing");
+      });
+      if (!isCurrent()) return;
+      setUploadStage("validating");
+      // Reject non-resume documents up front; the text is validated again on Analyze.
+      validateResumeText(extracted.text);
+      // A new resume fully replaces the previous one and any analysis of it.
+      setResumeText(extracted.text);
+      setFileName(extracted.fileName);
+      setReport(null);
+    } catch (error) {
+      if (isCurrent()) setResumeError(toUserMessage(error, "PARSE_FAILED"));
+    } finally {
+      if (isCurrent()) setUploadStage(null);
     }
-    const reader = new FileReader();
-    reader.onload = () => {
-      setResumeText(String(reader.result ?? ""));
-      setFileName(file.name);
-      setResumeError(null);
-    };
-    reader.readAsText(file);
   };
 
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
-    if (file) readFile(file);
+    e.target.value = ""; // allow re-selecting the same file after fixing it
+    if (file) void readFile(file);
   };
 
   const onDrop = (e: DragEvent<HTMLDivElement>) => {
     e.preventDefault();
     setDragging(false);
-    const file = e.dataTransfer.files?.[0];
-    if (file) readFile(file);
+    if (busy) return;
+    const files = e.dataTransfer.files;
+    if (files.length > 1) {
+      setResumeError(toUserMessage(new ResumeToolError("MULTIPLE_FILES")));
+      return;
+    }
+    if (files[0]) void readFile(files[0]);
   };
 
   const loadSample = () => {
+    cancelUpload();
     setResumeText(SAMPLE_RESUME);
     setJdText(SAMPLE_JD);
     setFileName("sample-resume.txt");
     setResumeError(null);
     setJdError(null);
+    setFormError(null);
+    setReport(null);
   };
 
   const analyze = () => {
-    let ok = true;
-    if (resumeText.trim().length < 80) {
-      setResumeError("Please add your resume text (paste it or upload a .txt file) — at least a few lines.");
-      ok = false;
-    }
-    if (jdText.trim().length < 80) {
-      setJdError("Please paste the full job description you're targeting.");
-      ok = false;
-    }
-    if (!ok) return;
+    if (busy || analyzeTimerRef.current) return; // one analysis at a time
+    setFormError(null);
 
+    // Both inputs are validated (and errors shown together) before anything is analyzed.
+    let resume: ParsedResume | null = null;
+    let jd: string | null = null;
+    try {
+      resume = validateResumeText(resumeText);
+      setResumeError(null);
+    } catch (error) {
+      setResumeError(toUserMessage(error, "NOT_A_RESUME"));
+    }
+    try {
+      jd = validateJobDescription(jdText, resumeText);
+      setJdError(null);
+    } catch (error) {
+      setJdError(toUserMessage(error, "JD_INVALID"));
+    }
+    if (!resume || !jd) return;
+
+    const validResume = resume;
+    const validJd = jd;
+    const analyzedFileName = fileName;
+    setReport(null);
     setPhase("analyzing");
     // Simulated processing time so the UX feels like a real AI call.
-    setTimeout(() => {
-      setResult(analyzeResumeAndJd({ resumeText, jdText }));
-      setPhase("results");
+    analyzeTimerRef.current = setTimeout(() => {
+      analyzeTimerRef.current = null;
+      try {
+        const analysis = analyzeResumeAndJd({ resume: validResume, jdText: validJd });
+        setReport({ resume: validResume, fileName: analyzedFileName, analysis });
+        setPhase("results");
+      } catch (error) {
+        if (error instanceof ResumeToolError && error.code.startsWith("JD_")) setJdError(error.message);
+        else setFormError(toUserMessage(error, "ANALYSIS_FAILED"));
+        setPhase("input");
+      }
     }, 1400);
   };
 
+  /** Back to the inputs for another run — the resume and JD are kept so either can be changed. */
   const reset = () => {
+    if (analyzeTimerRef.current) clearTimeout(analyzeTimerRef.current);
+    analyzeTimerRef.current = null;
     setPhase("input");
-    setResult(null);
-    setResumeText("");
-    setJdText("");
-    setFileName(null);
+    setReport(null);
     setResumeError(null);
     setJdError(null);
+    setFormError(null);
   };
+
+  const result = report?.analysis;
+  const snapshot = report?.resume;
 
   return (
     <div className="flex flex-col gap-8">
@@ -234,7 +332,8 @@ export default function ToolAnalyzer() {
                 <button
                   type="button"
                   onClick={loadSample}
-                  className="text-xs font-bold text-brand-600 underline-offset-4 hover:underline"
+                  disabled={phase === "analyzing"}
+                  className="text-xs font-bold text-brand-600 underline-offset-4 hover:underline disabled:pointer-events-none disabled:opacity-50"
                 >
                   Try sample
                 </button>
@@ -243,10 +342,11 @@ export default function ToolAnalyzer() {
               <div
                 onDragOver={(e) => {
                   e.preventDefault();
-                  setDragging(true);
+                  if (!busy) setDragging(true);
                 }}
                 onDragLeave={() => setDragging(false)}
                 onDrop={onDrop}
+                aria-busy={uploadStage !== null}
                 className={cn(
                   "flex flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-4 py-8 text-center transition-all",
                   dragging
@@ -254,25 +354,38 @@ export default function ToolAnalyzer() {
                     : "border-line-strong bg-page/60 dark:border-dark-line dark:bg-white/[0.04]"
                 )}
               >
-                <Upload className="size-6 text-ink-500 dark:text-dark-text-secondary" aria-hidden="true" />
-                <p className="text-sm font-semibold text-ink-700 dark:text-dark-text-secondary">
-                  {fileName ? fileName : "Drag & drop or"}
-                </p>
+                {uploadStage ? (
+                  <>
+                    <LoaderCircle className="size-6 animate-spin text-brand-500" aria-hidden="true" />
+                    <p role="status" className="text-sm font-semibold text-ink-700 dark:text-dark-text-secondary">
+                      {UPLOAD_STAGE_LABEL[uploadStage]}
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <Upload className="size-6 text-ink-500 dark:text-dark-text-secondary" aria-hidden="true" />
+                    <p className="break-all text-sm font-semibold text-ink-700 dark:text-dark-text-secondary">
+                      {fileName ? fileName : "Drag & drop or"}
+                    </p>
+                  </>
+                )}
                 <button
                   type="button"
                   onClick={() => fileInputRef.current?.click()}
-                  className="text-sm font-bold text-brand-600 underline-offset-4 hover:underline"
+                  disabled={busy}
+                  className="text-sm font-bold text-brand-600 underline-offset-4 hover:underline disabled:pointer-events-none disabled:opacity-50"
                 >
-                  browse files
+                  {fileName ? "replace file" : "browse files"}
                 </button>
                 <p className="text-xs text-ink-500 dark:text-dark-text-muted">
-                  .txt / .md for this demo, or just paste below
+                  PDF, DOCX, TXT or MD · up to 5 MB — or just paste below
                 </p>
                 <input
                   ref={fileInputRef}
                   type="file"
-                  accept=".txt,.md,text/plain"
+                  accept={RESUME_FILE_ACCEPT}
                   onChange={onFileChange}
+                  disabled={busy}
                   className="hidden"
                   aria-label="Upload resume file"
                 />
@@ -286,8 +399,11 @@ export default function ToolAnalyzer() {
                 placeholder="Paste your resume content here…"
                 value={resumeText}
                 onChange={(e) => {
+                  if (uploadStage) cancelUpload(); // a manual edit wins over a pending upload
                   setResumeText(e.target.value);
+                  if (!e.target.value.trim()) setFileName(null);
                   setResumeError(null);
+                  setFormError(null);
                 }}
                 error={resumeError ?? undefined}
                 hint="Parsed locally in your browser — nothing is uploaded."
@@ -312,9 +428,15 @@ export default function ToolAnalyzer() {
                 onChange={(e) => {
                   setJdText(e.target.value);
                   setJdError(null);
+                  setFormError(null);
                 }}
                 error={jdError ?? undefined}
               />
+              {formError && (
+                <p role="alert" className="text-xs font-medium text-rose-500">
+                  {formError}
+                </p>
+              )}
               <Button
                 onClick={analyze}
                 variant="primary"
@@ -324,7 +446,13 @@ export default function ToolAnalyzer() {
                 className="w-full"
               >
                 <Zap className="size-4" aria-hidden="true" />
-                {canAnalyze ? "Analyze Match" : "Add resume + JD to analyze"}
+                {phase === "analyzing"
+                  ? "Analyzing…"
+                  : uploadStage
+                    ? "Reading resume…"
+                    : canAnalyze
+                      ? "Analyze Match"
+                      : "Add resume + JD to analyze"}
               </Button>
             </div>
           </motion.div>
@@ -345,12 +473,14 @@ export default function ToolAnalyzer() {
             >
               <GaugeCircle className="size-7" aria-hidden="true" />
             </motion.span>
-            <p className="text-lg font-bold text-ink-900 dark:text-white">Analyzing your match…</p>
-            <p className="text-sm text-ink-500 dark:text-dark-text-muted">Comparing resume against the job description</p>
+            <p role="status" className="text-lg font-bold text-ink-900 dark:text-white">Analyzing your match…</p>
+            <p className="px-4 text-center text-sm text-ink-500 dark:text-dark-text-muted">
+              Resume and JD validated — comparing skills, keywords and experience
+            </p>
           </motion.div>
         )}
 
-        {phase === "results" && result && (
+        {phase === "results" && result && snapshot && (
           <motion.div
             key="results"
             initial={{ opacity: 0, y: 20 }}
@@ -375,6 +505,56 @@ export default function ToolAnalyzer() {
                     Analyze another
                   </Button>
                 </div>
+              </div>
+            </div>
+
+            {/* what was read from the resume — values are taken verbatim, never inferred */}
+            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+              <h3 className="flex flex-wrap items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
+                <UserRound className="size-5 text-icon-blue" aria-hidden="true" />
+                Resume Snapshot
+                {report.fileName && (
+                  <span className="break-all text-xs font-semibold text-ink-500 dark:text-dark-text-muted">
+                    · {report.fileName}
+                  </span>
+                )}
+              </h3>
+              <dl className="grid gap-4 text-sm sm:grid-cols-3">
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-dark-text-muted">Name</dt>
+                  <dd className="mt-1 break-words font-semibold text-ink-900 dark:text-white">
+                    {snapshot.name ?? "Not found in resume"}
+                  </dd>
+                  {(snapshot.email || snapshot.phone) && (
+                    <dd className="mt-0.5 break-all text-ink-600 dark:text-dark-text-secondary">
+                      {[snapshot.email, snapshot.phone].filter(Boolean).join(" · ")}
+                    </dd>
+                  )}
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-dark-text-muted">Experience</dt>
+                  <dd className="mt-1 font-semibold text-ink-900 dark:text-white">
+                    {snapshot.experienceYears !== null
+                      ? `${snapshot.experienceYears} ${snapshot.experienceYears === 1 ? "year" : "years"}`
+                      : snapshot.experience.length
+                        ? "Listed (no dates found)"
+                        : "No work experience listed"}
+                  </dd>
+                </div>
+                <div>
+                  <dt className="text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-dark-text-muted">Sections found</dt>
+                  <dd className="mt-1 text-ink-700 dark:text-dark-text-secondary">
+                    {snapshot.sections.length
+                      ? snapshot.sections.map((s) => SECTION_LABEL[s]).join(", ")
+                      : "No standard headings"}
+                  </dd>
+                </div>
+              </dl>
+              <div>
+                <p className="mb-2 text-xs font-semibold uppercase tracking-wider text-ink-500 dark:text-dark-text-muted">
+                  Skills on your resume
+                </p>
+                <ChipList items={snapshot.skills.slice(0, 24)} tone="neutral" />
               </div>
             </div>
 

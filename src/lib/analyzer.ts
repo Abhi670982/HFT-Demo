@@ -4,10 +4,20 @@
  * Runs entirely in the browser — no backend calls. The architecture is
  * intentionally isolated in this module so a real AI API can replace the
  * `analyzeResumeAndJd` function later without touching any UI code.
+ *
+ * Inputs must already be validated: the resume via `validateResumeText`
+ * (which returns the ParsedResume used here) and the JD via
+ * `validateJobDescription`. The result is checked by `assertValidResult`
+ * before it is returned, so the UI never renders a malformed analysis — the
+ * same guard should wrap any future AI response.
  */
 
+import { ResumeToolError } from "@/lib/resume/errors";
+import type { ParsedResume } from "@/lib/resume/parse";
+import { detectSkills } from "@/lib/resume/skills";
+
 export interface AnalyzerInput {
-  resumeText: string;
+  resume: ParsedResume;
   jdText: string;
 }
 
@@ -24,7 +34,7 @@ export interface AnalysisResult {
 
 const STOPWORDS = new Set([
   "the","and","for","with","you","your","will","are","have","this","that","from","our","their",
-  "who","was","not","but","all","can","has","was","its","his","her","one","two","three","may",
+  "who","was","not","but","all","can","has","its","his","her","one","two","three","may",
   "job","role","work","team","teams","company","years","year","plus","strong","good","great",
   "must","should","would","able","well","also","into","over","more","most","some","such","only",
   "they","them","then","than","when","what","which","while","where","being","been","were","each",
@@ -32,104 +42,135 @@ const STOPWORDS = new Set([
   "about","please","apply","candidates","candidate","required","require","requires","responsibilities",
   "experience","experienced","skills","skill","working","looking","join","help","make","made",
   "per","any","etc","via","at","in","on","of","to","a","an","as","is","it","or","by","be","we",
+  "ideal","opportunity","environment","ability","understanding","knowledge","excellent","preferred",
+  "responsible","requirement","requirements","qualification","qualifications","nice","have","having",
+  "least","minimum","relevant","related","field","based","familiarity","familiar","proficiency",
+  "proficient","hands","expert","expertise","senior","junior","position","opening","we're",
+  "you'll","ensure","provide","build","building","develop","developing","multiple","various",
 ]);
 
-/** Curated skill dictionary used to extract meaningful requirements from the JD. */
-const SKILL_DICTIONARY: string[] = [
-  "react","next.js","angular","vue","typescript","javascript","node.js","python","java","c++","c#",
-  "go","rust","php","ruby","kotlin","swift","flutter","react native","html","css","tailwind",
-  "sql","mysql","postgresql","mongodb","redis","elasticsearch","graphql","rest api","docker",
-  "kubernetes","aws","azure","gcp","ci/cd","jenkins","terraform","linux","git","microservices",
-  "system design","data structures","algorithms","machine learning","deep learning","nlp","pandas",
-  "numpy","tensorflow","pytorch","tableau","power bi","excel","spark","hadoop","etl","data analysis",
-  "product management","roadmap","agile","scrum","kanban","jira","figma","ui/ux","user research",
-  "seo","sem","google analytics","content marketing","brand management","crm","salesforce",
-  "hubspot","financial modeling","accounting","risk management","recruitment","onboarding",
-  "communication","leadership","stakeholder management","problem solving","negotiation",
-  "project management","testing","selenium","automation","devops","sre","security","oauth",
-];
+const MAX_KEYWORDS = 18;
+const MAX_FREQUENT_TERMS = 8;
 
-function normalize(text: string): string {
-  return text.toLowerCase().replace(/[^a-z0-9+#./\s-]/g, " ").replace(/\s+/g, " ").trim();
+function tokenize(text: string): string[] {
+  return text.toLowerCase().match(/[a-z][a-z0-9+#.'-]*[a-z0-9+#]|[a-z]/g) ?? [];
 }
 
-function wordSet(text: string): Set<string> {
-  return new Set(normalize(text).split(" ").filter((w) => w.length > 2 && !STOPWORDS.has(w)));
+/** Meaningful JD terms that occur at least twice, most frequent first. */
+function frequentTerms(jdText: string, exclude: string[]): string[] {
+  const counts = new Map<string, number>();
+  for (const token of tokenize(jdText)) {
+    if (token.length < 4 || STOPWORDS.has(token)) continue;
+    counts.set(token, (counts.get(token) ?? 0) + 1);
+  }
+  const excluded = exclude.join(" ");
+  return [...counts.entries()]
+    .filter(([word, count]) => count >= 2 && !excluded.includes(word))
+    .sort((a, b) => b[1] - a[1])
+    .slice(0, MAX_FREQUENT_TERMS)
+    .map(([word]) => word);
 }
 
-function detectSkills(text: string): string[] {
-  const t = normalize(text);
-  return SKILL_DICTIONARY.filter((skill) => t.includes(skill));
+function hasTerm(tokens: Set<string>, word: string): boolean {
+  return tokens.has(word) || tokens.has(`${word}s`) || (word.endsWith("s") && tokens.has(word.slice(0, -1)));
 }
 
-function detectYears(text: string): number {
-  const matches = text.match(/(\d{1,2})\s*\+?\s*(?:-\s*\d{1,2}\s*)?years?/g) ?? [];
-  const nums = matches
-    .map((m) => parseInt(m.match(/\d{1,2}/)?.[0] ?? "0", 10))
-    .filter((n) => n > 0 && n < 40);
-  return nums.length ? Math.max(...nums) : 0;
+/** The strictest "N+ years" requirement stated in the JD, or 0 if none. */
+function requiredYears(jdText: string): number {
+  const pattern = /(\d{1,2})\s*\+?\s*(?:(?:-|–|to)\s*\d{1,2}\s*)?\+?\s*(?:years?|yrs?)\b([^.\n]{0,40})/gi;
+  let max = 0;
+  for (const m of jdText.matchAll(pattern)) {
+    const n = Number(m[1]);
+    if (n > 0 && n <= 30 && /experience|exp\b/i.test(m[2] + m[0])) max = Math.max(max, n);
+  }
+  return max;
 }
 
-export function analyzeResumeAndJd({ resumeText, jdText }: AnalyzerInput): AnalysisResult {
-  const resume = normalize(resumeText);
-  const jd = normalize(jdText);
+const pct = (part: number, whole: number) => Math.round((part / whole) * 100);
+const clamp = (n: number) => Math.min(100, Math.max(0, Math.round(n)));
 
-  const jdWords = wordSet(jdText);
-  const resumeWords = wordSet(resumeText);
+/** Throws if a result is malformed — guards the UI against bad engine (or future AI) output. */
+export function assertValidResult(value: unknown): asserts value is AnalysisResult {
+  const r = value as Record<string, unknown> | null;
+  const isScore = (n: unknown) => typeof n === "number" && Number.isFinite(n) && n >= 0 && n <= 100;
+  const isList = (l: unknown) => Array.isArray(l) && l.every((s) => typeof s === "string" && s.trim().length > 0);
+  if (
+    !r ||
+    !isScore(r.overall) ||
+    !isScore(r.keywordMatch) ||
+    !isScore(r.skillsMatch) ||
+    !isScore(r.experienceMatch) ||
+    !isList(r.matchedKeywords) ||
+    !isList(r.missingKeywords) ||
+    !isList(r.gaps) ||
+    !isList(r.recommendations) ||
+    (r.gaps as string[]).length === 0 ||
+    (r.recommendations as string[]).length === 0
+  ) {
+    throw new ResumeToolError("ANALYSIS_FAILED");
+  }
+}
 
-  // 1. Keyword extraction — top skills + frequent meaningful words from the JD
+export function analyzeResumeAndJd({ resume, jdText }: AnalyzerInput): AnalysisResult {
+  const resumeText = resume.text;
+  const resumeTokens = new Set(tokenize(resumeText));
+  const resumeSkills = resume.detectedSkills;
+
+  // 1. Keyword extraction — dictionary skills + recurring meaningful terms from the JD
   const jdSkills = detectSkills(jdText);
-  const freqWords = Array.from(jdWords)
-    .filter((w) => !jdSkills.some((s) => s.includes(w)))
-    .sort((a, b) => jd.split(b).length - jd.split(a).length)
-    .slice(0, 8);
-  const keywords = [...new Set([...jdSkills, ...freqWords])].slice(0, 18);
+  const keywords = [...new Set([...jdSkills, ...frequentTerms(jdText, jdSkills)])].slice(0, MAX_KEYWORDS);
+  if (!keywords.length) throw new ResumeToolError("JD_INVALID");
 
-  const matchedKeywords = keywords.filter(
-    (k) => resumeWords.has(k) || resume.includes(k)
+  const matchedKeywords = keywords.filter((k) =>
+    jdSkills.includes(k) ? resumeSkills.includes(k) : hasTerm(resumeTokens, k)
   );
   const missingKeywords = keywords.filter((k) => !matchedKeywords.includes(k));
-  const keywordMatch = keywords.length
-    ? Math.round((matchedKeywords.length / keywords.length) * 100)
-    : 60;
+  const keywordMatch = pct(matchedKeywords.length, keywords.length);
 
   // 2. Skills match
-  const resumeSkills = detectSkills(resumeText);
-  const skillsMatch = jdSkills.length
-    ? Math.round((jdSkills.filter((s) => resumeSkills.includes(s)).length / jdSkills.length) * 100)
-    : Math.min(keywordMatch + 10, 95);
+  const matchedSkills = jdSkills.filter((s) => resumeSkills.includes(s));
+  const missingSkills = jdSkills.filter((s) => !resumeSkills.includes(s));
+  const skillsMatch = jdSkills.length ? pct(matchedSkills.length, jdSkills.length) : keywordMatch;
 
-  // 3. Experience match (heuristic)
-  const jdYears = detectYears(jdText);
-  const resumeYears = detectYears(resumeText);
+  // 3. Experience match — stated JD requirement vs. experience computed from the resume
+  const jdYears = requiredYears(jdText);
+  const resumeYears = resume.experienceYears;
+  const hasExperience = resume.experience.length > 0 || (resumeYears ?? 0) > 0;
   let experienceMatch: number;
   if (jdYears > 0) {
-    experienceMatch = resumeYears >= jdYears ? 92 : Math.max(35, Math.round((resumeYears / jdYears) * 88));
+    if (resumeYears !== null) experienceMatch = resumeYears >= jdYears ? 100 : pct(resumeYears, jdYears);
+    else experienceMatch = hasExperience ? 50 : 0;
   } else {
-    const senioritySignals = ["led","managed","owned","architected","mentored","drove","delivered","scaled"].filter(
-      (s) => resume.includes(s)
-    ).length;
-    experienceMatch = Math.min(55 + senioritySignals * 8, 90);
+    const senioritySignals = ["led", "managed", "owned", "architected", "mentored", "drove", "delivered", "scaled"]
+      .filter((s) => hasTerm(resumeTokens, s)).length;
+    experienceMatch = hasExperience ? Math.min(60 + senioritySignals * 8, 100) : 50;
   }
+  experienceMatch = clamp(experienceMatch);
 
   // 4. Overall score — weighted blend
-  const overall = Math.min(
-    99,
-    Math.max(20, Math.round(keywordMatch * 0.4 + skillsMatch * 0.35 + experienceMatch * 0.25))
-  );
+  const overall = clamp(keywordMatch * 0.4 + skillsMatch * 0.35 + experienceMatch * 0.25);
 
   // 5. Profile gaps
   const gaps: string[] = [];
-  if (missingKeywords.length > 3) {
+  if (missingSkills.length) {
+    gaps.push(`Skills the JD asks for that your resume doesn't mention: ${missingSkills.slice(0, 5).join(", ")}.`);
+  } else if (missingKeywords.length > 3) {
     gaps.push(`Missing ${missingKeywords.length} keywords the JD emphasises — including ${missingKeywords.slice(0, 3).join(", ")}.`);
   }
-  if (!/achievements?|improved|increased|reduced|%\s*(increase|growth)|\d+x/.test(resume)) {
+  if (jdYears > 0 && resumeYears !== null && resumeYears < jdYears) {
+    gaps.push(`The JD asks for ${jdYears}+ years of experience; your resume shows about ${resumeYears} ${resumeYears === 1 ? "year" : "years"}.`);
+  } else if (jdYears > 0 && !hasExperience) {
+    gaps.push(`The JD asks for ${jdYears}+ years of experience; your resume doesn't list professional experience yet.`);
+  } else if (jdYears > 0 && resumeYears === null) {
+    gaps.push("Your roles have no dates, so your total experience can't be calculated — add start and end dates.");
+  }
+  if (!/\d+(?:\.\d+)?\s*%|₹|\$|\b\d+(?:\.\d+)?x\b|\b\d+[kKmM]\+?\s+(?:users|customers|downloads|revenue)/.test(resumeText)) {
     gaps.push("No quantified achievements detected — add measurable outcomes (%, ₹, time saved).");
   }
-  if (!/education|b\.tech|bachelor|master|m\.tech|mba|degree/.test(resume)) {
+  if (!resume.sections.includes("education") && !resume.education.length && !/\b(education|b\.?\s?tech|bachelor|master|m\.?\s?tech|mba|degree|university|college)\b/i.test(resumeText)) {
     gaps.push("Education section not detected — recruiters and ATS filters look for it.");
   }
-  if (!/certification|certified/.test(resume) && /certification|certified/.test(jd)) {
+  if (!/certification|certified/i.test(resumeText) && /certification|certified/i.test(jdText)) {
     gaps.push("The JD mentions certifications your resume doesn't list.");
   }
   if (gaps.length === 0) {
@@ -146,16 +187,22 @@ export function analyzeResumeAndJd({ resumeText, jdText }: AnalyzerInput): Analy
   recommendations.push(
     "Start your summary with the exact job title from the JD to pass title-based ATS filters."
   );
-  if (experienceMatch < 75) {
+  if (!hasExperience) {
+    recommendations.push(
+      "Without work experience, lead with projects, internships and coursework that use the JD's key skills."
+    );
+  } else if (experienceMatch < 75) {
     recommendations.push(
       "Reframe earlier work to highlight depth and ownership — match the seniority the JD is asking for."
     );
   }
   recommendations.push(
-    "Mirror the JD's top 3 skills in your most recent role's bullet points, each with a measurable result."
+    hasExperience
+      ? "Mirror the JD's top 3 skills in your most recent role's bullet points, each with a measurable result."
+      : "Mirror the JD's top 3 skills in your project descriptions, each with a concrete outcome."
   );
 
-  return {
+  const result: AnalysisResult = {
     overall,
     keywordMatch,
     skillsMatch,
@@ -165,6 +212,8 @@ export function analyzeResumeAndJd({ resumeText, jdText }: AnalyzerInput): Analy
     gaps,
     recommendations,
   };
+  assertValidResult(result);
+  return result;
 }
 
 /** Built-in demo content so visitors can try the flow with one click. */
