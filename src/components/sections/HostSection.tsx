@@ -17,14 +17,14 @@ export default function HostSection() {
   return (
     <section id="host" className="shell-pad scroll-mt-28 py-12 sm:py-16">
       <Reveal>
-        <div className="mx-auto grid min-w-0 max-w-5xl items-center gap-8 overflow-hidden rounded-panel border border-line bg-surface p-7 shadow-card sm:p-10 md:grid-cols-[auto_1fr]">
+        <div className="mx-auto grid min-w-0 max-w-5xl items-center gap-8 overflow-hidden rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-7 shadow-card sm:p-10 md:grid-cols-[auto_1fr]">
           {/* portrait — fixed aspect frame keeps the image stable and centered */}
           <div className="relative mx-auto aspect-[4/5] w-56 shrink-0 sm:w-60 md:w-64">
             <div
               aria-hidden="true"
               className="absolute -left-3 -top-3 size-full rounded-[26px] bg-gradient-to-br from-brand-200 to-brand-400/40"
             />
-            <div className="relative size-full overflow-hidden rounded-[24px] border border-line shadow-soft">
+            <div className="relative size-full overflow-hidden rounded-[24px] border border-line dark:border-dark-line shadow-soft">
               <Image
                 src={assets.ceo}
                 alt="Mukul Sharma — Founder of Hunt For Tomorrow"
@@ -46,7 +46,7 @@ export default function HostSection() {
                 CEO & Founder
               </p>
             </div>
-            <p className="max-w-xl text-[15px] leading-relaxed text-ink-500">
+            <p className="max-w-xl text-[15px] leading-relaxed text-ink-500 dark:text-dark-text-muted">
               With deep experience in talent acquisition and career strategy, Mukul has guided
               professionals across industries through every stage of the hiring journey — from
               positioning and outreach to interviews and negotiation.

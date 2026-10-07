@@ -21,7 +21,7 @@ export default function FeatureCard({
   return (
     <div
       className={cn(
-        "group flex h-full flex-col gap-4 rounded-card border border-line bg-surface p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-card",
+        "group flex h-full flex-col gap-4 rounded-card border border-line bg-surface p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:border-brand-200 hover:shadow-card dark:border-dark-line dark:bg-dark-surface dark:hover:border-brand-500/40",
         className
       )}
     >
@@ -29,8 +29,8 @@ export default function FeatureCard({
         <Icon aria-hidden="true" />
       </IconContainer>
       <div className="flex flex-col gap-1.5">
-        <h3 className="text-lg font-bold leading-snug tracking-tight text-ink-900 dark:text-white dark:text-white">{title}</h3>
-        <p className="text-sm leading-relaxed text-ink-500">{description}</p>
+        <h3 className="text-lg font-bold leading-snug tracking-tight text-ink-900 dark:text-white">{title}</h3>
+        <p className="text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">{description}</p>
       </div>
     </div>
   );

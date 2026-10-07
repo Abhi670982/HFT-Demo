@@ -151,7 +151,7 @@ export default function ClientDashboardPage() {
             <p className="flex items-center gap-2 text-[13px] font-bold">
               <Bot className="size-4" aria-hidden="true" /> Agents active
             </p>
-            <p className="mt-1 text-xs leading-relaxed text-white/80">
+            <p className="mt-1 text-xs leading-relaxed text-white/90">
               11 agents are monitoring, drafting and tracking in the background.
             </p>
           </div>
@@ -159,13 +159,13 @@ export default function ClientDashboardPage() {
 
         {/* content */}
         <section className="flex flex-col gap-6">
-          <div className="flex flex-wrap items-center justify-between gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft sm:p-7">
+          <div className="flex flex-wrap items-center justify-between gap-4 rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-6 shadow-soft sm:p-7">
             <div>
               <Pill>Client Dashboard — Demo</Pill>
               <h1 className="mt-3 text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
                 {content.heading}
               </h1>
-              <p className="mt-1 max-w-xl text-sm leading-relaxed text-ink-500">{content.note}</p>
+              <p className="mt-1 max-w-xl text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">{content.note}</p>
             </div>
             <div className="hidden items-center gap-2 rounded-xl bg-page px-4 py-3 sm:flex">
               <Mail className="size-4 text-icon-violet" aria-hidden="true" />
@@ -185,7 +185,7 @@ export default function ClientDashboardPage() {
               {content.rows.map((row) => (
                 <div
                   key={row.title}
-                  className="group flex flex-wrap items-center gap-4 rounded-card border border-line bg-surface p-5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card sm:p-6"
+                  className="group flex flex-wrap items-center gap-4 rounded-card border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-5 shadow-soft transition-all duration-300 hover:-translate-y-0.5 hover:border-brand-200 hover:shadow-card sm:p-6"
                 >
                   <span
                     className={cn(
@@ -197,7 +197,7 @@ export default function ClientDashboardPage() {
                   </span>
                   <div className="min-w-0 flex-1">
                     <p className="truncate text-[15px] font-bold text-ink-900 dark:text-white">{row.title}</p>
-                    <p className="truncate text-[13px] text-ink-500">{row.meta}</p>
+                    <p className="truncate text-[13px] text-ink-500 dark:text-dark-text-muted">{row.meta}</p>
                   </div>
                   <span
                     className={cn(
@@ -212,7 +212,7 @@ export default function ClientDashboardPage() {
             </motion.div>
           </AnimatePresence>
 
-          <p className="rounded-2xl border border-dashed border-line-strong bg-surface/60 p-4 text-center text-xs leading-relaxed text-ink-500 dark:text-dark-text-muted">
+          <p className="rounded-2xl border border-dashed border-line dark:border-dark-line-strong bg-surface dark:bg-dark-surface/60 p-4 text-center text-xs leading-relaxed text-ink-500 dark:text-dark-text-muted">
             Frontend demo dashboard with sample data — no real backend, no real client data. Replace
             with live APIs when the backend is ready.
           </p>
@@ -220,7 +220,7 @@ export default function ClientDashboardPage() {
           <div className="flex flex-wrap items-center justify-between gap-3 pb-4">
             <Link
               href="/client-access"
-              className="text-sm font-semibold text-ink-500 transition-colors hover:text-brand-600"
+              className="text-sm font-semibold text-ink-500 dark:text-dark-text-muted transition-colors hover:text-brand-600"
             >
               ← Sign in as a different client
             </Link>

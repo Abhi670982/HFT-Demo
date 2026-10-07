@@ -164,7 +164,7 @@ export default function GetStartedPage() {
   return (
     <main className="flex flex-col">
       <section className="shell-pad py-12 sm:py-16">
-        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-line bg-surface shadow-card lg:grid-cols-[0.85fr_1.15fr]">
+        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[28px] border border-line dark:border-dark-line bg-surface dark:bg-dark-surface shadow-card lg:grid-cols-[0.85fr_1.15fr]">
           {/* left panel */}
           <div className="relative flex flex-col justify-between gap-8 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 p-8 text-white sm:p-10">
             <div className="flex flex-col gap-3">
@@ -209,7 +209,7 @@ export default function GetStartedPage() {
                 <h2 className="text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white dark:text-white">
                   Welcome aboard, {data.name.split(" ")[0]}!
                 </h2>
-                <p className="max-w-md text-sm leading-relaxed text-ink-500">
+                <p className="max-w-md text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">
                   Your profile is ready and your target — <strong>{data.targetRole}</strong> — is
                   noted. A career strategist will email{" "}
                   <strong>{data.email}</strong> within 1–2 working days with your personalised
@@ -237,7 +237,7 @@ export default function GetStartedPage() {
                 {/* progress */}
                 <div className="flex flex-col gap-2">
                   <div className="flex items-center justify-between text-xs font-semibold">
-                    <span className="text-ink-500">
+                    <span className="text-ink-500 dark:text-dark-text-muted">
                       Step {step + 1} of {steps.length + 1}
                     </span>
                     <span className="text-brand-600">{progress}%</span>
@@ -269,7 +269,7 @@ export default function GetStartedPage() {
                           <h2 className="text-lg font-bold tracking-tight text-ink-900 dark:text-white dark:text-white">
                             {current.title}
                           </h2>
-                          <p className="text-[13px] text-ink-500">{current.caption}</p>
+                          <p className="text-[13px] text-ink-500 dark:text-dark-text-muted">{current.caption}</p>
                         </div>
                       </div>
 

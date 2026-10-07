@@ -223,7 +223,7 @@ export default function ToolAnalyzer() {
             className="grid gap-6 lg:grid-cols-2"
           >
             {/* Step 1 — Resume */}
-            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <div className="flex items-center justify-between gap-3">
                 <h3 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink-900 dark:text-white">
                   <IconContainer tone="blue" size="sm">
@@ -295,7 +295,7 @@ export default function ToolAnalyzer() {
             </div>
 
             {/* Step 2 — JD */}
-            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <h3 className="flex items-center gap-2 text-lg font-bold tracking-tight text-ink-900 dark:text-white">
                 <IconContainer tone="violet" size="sm">
                   <Target aria-hidden="true" />
@@ -336,7 +336,7 @@ export default function ToolAnalyzer() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="flex flex-col items-center justify-center gap-5 rounded-panel border border-line bg-surface py-24 shadow-soft dark:border-dark-line"
+            className="flex flex-col items-center justify-center gap-5 rounded-panel border border-line bg-surface dark:bg-dark-surface py-24 shadow-soft dark:border-dark-line"
           >
             <motion.span
               animate={{ rotate: 360 }}
@@ -346,7 +346,7 @@ export default function ToolAnalyzer() {
               <GaugeCircle className="size-7" aria-hidden="true" />
             </motion.span>
             <p className="text-lg font-bold text-ink-900 dark:text-white">Analyzing your match…</p>
-            <p className="text-sm text-ink-500">Comparing resume against the job description</p>
+            <p className="text-sm text-ink-500 dark:text-dark-text-muted">Comparing resume against the job description</p>
           </motion.div>
         )}
 
@@ -360,7 +360,7 @@ export default function ToolAnalyzer() {
             className="flex flex-col gap-6"
           >
             {/* score header */}
-            <div className="grid items-center gap-8 rounded-panel border border-line bg-surface p-7 shadow-card dark:border-dark-line sm:p-9 md:grid-cols-[auto_1fr]">
+            <div className="grid items-center gap-8 rounded-panel border border-line bg-surface dark:bg-dark-surface p-7 shadow-card dark:border-dark-line sm:p-9 md:grid-cols-[auto_1fr]">
               <div className="mx-auto flex flex-col items-center gap-3">
                 <ScoreRing score={result.overall} />
                 <p className="text-sm font-semibold text-ink-600 dark:text-dark-text-secondary">Overall Match Score</p>
@@ -380,7 +380,7 @@ export default function ToolAnalyzer() {
 
             {/* details grid */}
             <div className="grid gap-6 lg:grid-cols-2">
-              <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+              <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
                 <h3 className="flex items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
                   <CheckCircle2 className="size-5 text-icon-teal" aria-hidden="true" />
                   Matched Keywords
@@ -393,7 +393,7 @@ export default function ToolAnalyzer() {
                 <ChipList items={result.missingKeywords} tone="warn" />
               </div>
 
-              <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+              <div className="flex flex-col gap-4 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
                 <h3 className="flex items-center gap-2 text-base font-bold text-ink-900 dark:text-white">
                   <Target className="size-5 text-icon-violet" aria-hidden="true" />
                   Profile Gaps

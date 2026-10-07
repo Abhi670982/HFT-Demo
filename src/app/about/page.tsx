@@ -45,7 +45,7 @@ export default function AboutPage() {
           </>
         }
       >
-        <div className="overflow-hidden rounded-[24px] border border-line bg-surface shadow-card dark:border-dark-line">
+        <div className="overflow-hidden rounded-[24px] border border-line bg-surface dark:bg-dark-surface shadow-card dark:border-dark-line">
           <Image
             src={assets.aboutHero}
             alt="The HuntForTomorrow team collaborating around a laptop"
@@ -61,7 +61,7 @@ export default function AboutPage() {
       <section id="story" className="shell-pad scroll-mt-24 py-10 sm:py-12">
         <div className="grid gap-4 lg:grid-cols-3">
           <Reveal>
-            <div className="flex h-full flex-col gap-3.5 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex h-full flex-col gap-3.5 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <IconContainer tone="violet" size="lg">
                 <Compass aria-hidden="true" />
               </IconContainer>
@@ -76,7 +76,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="flex h-full flex-col gap-3.5 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex h-full flex-col gap-3.5 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <IconContainer tone="blue" size="lg">
                 <Eye aria-hidden="true" />
               </IconContainer>
@@ -90,7 +90,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.16}>
-            <div className="flex h-full flex-col gap-3.5 rounded-panel border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex h-full flex-col gap-3.5 rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <IconContainer tone="mint" size="lg">
                 <HeartHandshake aria-hidden="true" />
               </IconContainer>
@@ -110,7 +110,7 @@ export default function AboutPage() {
       <section className="shell-pad py-6 sm:py-8">
         <div className="grid gap-4 lg:grid-cols-2">
           <Reveal>
-            <div className="flex h-full flex-col gap-3 rounded-card border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex h-full flex-col gap-3 rounded-card border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <h2 className="text-lg font-bold tracking-tight text-ink-900 dark:text-white sm:text-xl">
                 Why HuntForTomorrow Exists
               </h2>
@@ -123,7 +123,7 @@ export default function AboutPage() {
             </div>
           </Reveal>
           <Reveal delay={0.08}>
-            <div className="flex h-full flex-col gap-3 rounded-card border border-line bg-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
+            <div className="flex h-full flex-col gap-3 rounded-card border border-line bg-surface dark:bg-dark-surface p-6 shadow-soft dark:border-dark-line sm:p-7">
               <h2 className="text-lg font-bold tracking-tight text-ink-900 dark:text-white sm:text-xl">
                 Career Support Philosophy
               </h2>
@@ -147,7 +147,7 @@ export default function AboutPage() {
         <div className="mt-8 flex justify-center">
           {leadership.map((leader) => (
             <Reveal key={leader.name} className="w-full max-w-4xl">
-              <div className="grid items-center gap-7 overflow-hidden rounded-panel border border-line bg-surface p-6 shadow-card dark:border-dark-line sm:p-8 md:grid-cols-[auto_1fr]">
+              <div className="grid items-center gap-7 overflow-hidden rounded-panel border border-line bg-surface dark:bg-dark-surface p-6 shadow-card dark:border-dark-line sm:p-8 md:grid-cols-[auto_1fr]">
                 <div className="relative mx-auto aspect-[4/5] w-44 shrink-0 sm:w-52 md:w-56">
                   <div
                     aria-hidden="true"

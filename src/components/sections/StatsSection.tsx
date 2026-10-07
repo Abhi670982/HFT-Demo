@@ -10,7 +10,7 @@ const stats = [
 export default function StatsSection() {
   return (
     <section className="shell-pad py-6">
-      <div className="grid grid-cols-2 gap-y-10 rounded-panel border border-line bg-surface px-6 py-10 shadow-soft sm:px-10 lg:grid-cols-4">
+      <div className="grid grid-cols-2 gap-y-10 rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface px-6 py-10 shadow-soft sm:px-10 lg:grid-cols-4">
         {stats.map((stat) => (
           <StatsCounter key={stat.label} {...stat} />
         ))}

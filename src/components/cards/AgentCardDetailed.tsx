@@ -52,7 +52,7 @@ export default function AgentCardDetailed({ agent, expanded, onToggle }: AgentCa
             <ChevronDown className="size-4" aria-hidden="true" />
           </span>
         </div>
-        <p className="text-sm leading-relaxed text-ink-500">{agent.description}</p>
+        <p className="text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">{agent.description}</p>
       </button>
 
       <AnimatePresence initial={false}>
@@ -64,7 +64,7 @@ export default function AgentCardDetailed({ agent, expanded, onToggle }: AgentCa
             exit={{ height: 0, opacity: 0 }}
             transition={{ duration: 0.32, ease: "easeOut" }}
           >
-            <div className="flex flex-col gap-4 border-t border-line px-6 pb-6 pt-5">
+            <div className="flex flex-col gap-4 border-t border-line dark:border-dark-line px-6 pb-6 pt-5">
               <div>
                 <p className="text-[11px] font-bold uppercase tracking-[0.14em] text-ink-500 dark:text-dark-text-muted">
                   Problem solved

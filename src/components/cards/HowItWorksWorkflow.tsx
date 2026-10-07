@@ -34,11 +34,11 @@ export default function HowItWorksWorkflow({ steps, className }: HowItWorksWorkf
             <span className="relative z-10 grid size-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-600 to-brand-400 text-lg font-extrabold text-white shadow-glow">
               {step.number}
             </span>
-            <div className="flex flex-col gap-1.5 rounded-card border border-line bg-surface p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card lg:items-center">
-              <h3 className="text-[15px] font-bold leading-snug tracking-tight text-ink-900 dark:text-white dark:text-white">
+            <div className="flex flex-col gap-1.5 rounded-card border border-line bg-surface p-5 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-card dark:border-dark-line dark:bg-dark-surface lg:items-center">
+              <h3 className="text-[15px] font-bold leading-snug tracking-tight text-ink-900 dark:text-white">
                 {step.title}
               </h3>
-              <p className="text-[13px] leading-relaxed text-ink-500">{step.description}</p>
+              <p className="text-[13px] leading-relaxed text-ink-500 dark:text-dark-text-muted">{step.description}</p>
             </div>
           </motion.li>
         ))}

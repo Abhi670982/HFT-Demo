@@ -36,7 +36,7 @@ export default function AcademySection() {
             <h2 className="text-balance text-2xl font-bold leading-[1.18] tracking-tight text-ink-900 dark:text-white sm:text-3xl lg:text-[32px]">
               Learn. Upskill. <span className="text-gradient">Get Ahead.</span>
             </h2>
-            <p className="max-w-xl text-sm leading-relaxed text-ink-500 sm:text-base">
+            <p className="max-w-xl text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted sm:text-base">
               Practical learning resources and programmes to help you build the skills that
               today&rsquo;s employers are looking for.
             </p>

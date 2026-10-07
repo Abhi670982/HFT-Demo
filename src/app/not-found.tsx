@@ -12,7 +12,7 @@ export default function NotFound() {
       <h1 className="text-4xl font-extrabold tracking-tight text-ink-900 dark:text-white sm:text-5xl">
         This page went off-strategy
       </h1>
-      <p className="max-w-md text-[15px] leading-relaxed text-ink-500">
+      <p className="max-w-md text-[15px] leading-relaxed text-ink-500 dark:text-dark-text-muted">
         The page you&rsquo;re looking for doesn&rsquo;t exist — but your next opportunity is still
         right where you left it.
       </p>

@@ -30,7 +30,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
       )}
     >
       {/* window header */}
-      <div className="flex min-w-0 items-center justify-between gap-2 border-b border-line bg-page/60 px-4 py-3 sm:gap-3 sm:px-5 sm:py-3.5">
+      <div className="flex min-w-0 items-center justify-between gap-2 border-b border-line dark:border-dark-line bg-page/60 px-4 py-3 sm:gap-3 sm:px-5 sm:py-3.5">
         <div className="flex items-center gap-2.5">
           <span className="grid size-8 place-items-center rounded-lg bg-gradient-to-br from-brand-600 to-brand-400 text-white">
             <GraduationCap className="size-4" aria-hidden="true" />
@@ -48,7 +48,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
           {courses.map((course) => (
             <div
               key={course.title}
-              className="group flex items-center gap-3.5 rounded-2xl border border-line bg-surface p-3.5 transition-all duration-300 hover:border-brand-200 hover:shadow-soft"
+              className="group flex items-center gap-3.5 rounded-2xl border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-3.5 transition-all duration-300 hover:border-brand-200 hover:shadow-soft"
             >
               <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-pastel-lavender text-icon-violet transition-transform group-hover:scale-110">
                 <PlayCircle className="size-5" aria-hidden="true" />
@@ -62,7 +62,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
                   />
                 </div>
               </div>
-              <span className="shrink-0 text-xs font-bold text-ink-500">{course.progress}%</span>
+              <span className="shrink-0 text-xs font-bold text-ink-500 dark:text-dark-text-muted">{course.progress}%</span>
             </div>
           ))}
         </div>
@@ -75,10 +75,10 @@ export default function DashboardPreview({ className }: { className?: string }) 
                 key={stat.label}
                 className="flex items-center gap-3 rounded-2xl bg-page px-4 py-3"
               >
-                <span className="grid size-8 place-items-center rounded-lg bg-surface text-icon-violet shadow-soft">
+                <span className="grid size-8 place-items-center rounded-lg bg-surface dark:bg-dark-surface text-icon-violet shadow-soft">
                   <stat.icon className="size-4" aria-hidden="true" />
                 </span>
-                <span className="text-xs font-medium text-ink-500">{stat.label}</span>
+                <span className="text-xs font-medium text-ink-500 dark:text-dark-text-muted">{stat.label}</span>
                 <span className="ml-auto text-sm font-bold text-ink-900 dark:text-white">{stat.value}</span>
               </div>
             ))}
@@ -88,7 +88,7 @@ export default function DashboardPreview({ className }: { className?: string }) 
             <p className="flex items-center gap-2 text-[13px] font-bold">
               <BookOpen className="size-4" aria-hidden="true" /> This week&rsquo;s focus
             </p>
-            <p className="text-xs leading-relaxed text-white/80">
+            <p className="text-xs leading-relaxed text-white/90">
               Short, practical lessons matched to your active job-search stage.
             </p>
             <span className="mt-auto inline-flex items-center gap-1.5 pt-2 text-xs font-semibold">

@@ -40,7 +40,7 @@ export default function ServicesPage() {
             aria-hidden="true"
             className="absolute -inset-6 rounded-[40px] bg-gradient-to-br from-brand-200/70 via-transparent to-pastel-mint blur-2xl"
           />
-          <div className="relative grid size-56 place-items-center rounded-[32px] border border-line bg-surface shadow-card sm:size-64">
+          <div className="relative grid size-56 place-items-center rounded-[32px] border border-line dark:border-dark-line bg-surface dark:bg-dark-surface shadow-card sm:size-64">
             <span className="grid size-28 place-items-center rounded-[28px] bg-gradient-to-br from-brand-600 to-brand-400 text-white shadow-glow sm:size-32">
               <Briefcase className="size-14" aria-hidden="true" />
             </span>
@@ -71,11 +71,11 @@ export default function ServicesPage() {
       {/* how services tie together */}
       <section className="shell-pad pb-10">
         <Reveal>
-          <div className="rounded-panel border border-line bg-surface p-8 shadow-soft sm:p-10">
+          <div className="rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-8 shadow-soft sm:p-10">
             <h2 className="text-center text-2xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-3xl">
               One system, not ten checkboxes
             </h2>
-            <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-relaxed text-ink-500">
+            <p className="mx-auto mt-3 max-w-2xl text-center text-[15px] leading-relaxed text-ink-500 dark:text-dark-text-muted">
               Each service strengthens the others: positioning sharpens your resume, an optimised
               resume powers outreach, outreach fills your pipeline, and every tracked application
               feeds interview preparation. Together they form one continuous, guided system.

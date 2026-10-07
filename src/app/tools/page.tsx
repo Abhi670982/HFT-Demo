@@ -34,7 +34,7 @@ export default function ToolsPage() {
       {/* analyzer */}
       <section className="shell-pad pb-14">
         <Reveal>
-          <div className="rounded-[28px] border border-line bg-page p-5 shadow-soft sm:p-8">
+          <div className="rounded-[28px] border border-line dark:border-dark-line bg-page p-5 shadow-soft sm:p-8">
             <ToolAnalyzer />
           </div>
         </Reveal>
@@ -45,7 +45,7 @@ export default function ToolsPage() {
         <div className="grid gap-4 sm:grid-cols-3">
           {promises.map((p, i) => (
             <Reveal key={p.text} delay={i * 0.06}>
-              <div className="flex h-full items-center gap-3.5 rounded-card border border-line bg-surface p-5 shadow-soft">
+              <div className="flex h-full items-center gap-3.5 rounded-card border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-5 shadow-soft">
                 <IconContainer tone={(["mint", "violet", "blue"] as const)[i]} size="md">
                   <p.icon aria-hidden="true" />
                 </IconContainer>

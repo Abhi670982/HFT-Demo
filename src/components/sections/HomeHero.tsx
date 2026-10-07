@@ -168,7 +168,7 @@ export default function HomeHero() {
           transition={{ duration: 0.65, ease: easeOut, delay: 0.18 }}
           className="relative mx-auto w-full max-w-[440px] pb-4 sm:max-w-[480px] lg:pb-0"
         >
-          <div className="relative overflow-hidden rounded-[24px] border border-line bg-surface shadow-card transition-colors dark:border-dark-line">
+          <div className="relative overflow-hidden rounded-[24px] border border-line bg-surface dark:bg-dark-surface shadow-card transition-colors dark:border-dark-line">
             <Image
               src={assets.homeHero}
               alt="Young professional ready for a brighter career"

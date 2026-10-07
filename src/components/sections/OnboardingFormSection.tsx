@@ -52,7 +52,7 @@ export default function OnboardingFormSection() {
 
   return (
     <section id="start-search" className="shell-pad scroll-mt-28 py-12 sm:py-16">
-      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-panel border border-line bg-surface shadow-card lg:grid-cols-[0.9fr_1.1fr]">
+      <div className="mx-auto grid max-w-5xl overflow-hidden rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface shadow-card lg:grid-cols-[0.9fr_1.1fr]">
         {/* copy side */}
         <div className="flex flex-col justify-center gap-4 bg-gradient-to-br from-navy-950 via-navy-900 to-navy-800 p-8 text-white sm:p-10">
           <h2 className="text-[28px] font-bold leading-tight tracking-tight sm:text-[34px]">
@@ -85,7 +85,7 @@ export default function OnboardingFormSection() {
               <h3 className="text-xl font-bold text-ink-900 dark:text-white dark:text-white">
                 Thanks, {form.name.split(" ")[0]}! We&rsquo;ve got your details.
               </h3>
-              <p className="max-w-sm text-sm leading-relaxed text-ink-500">
+              <p className="max-w-sm text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">
                 Your search profile has been received. Our team will review it and reach out at{" "}
                 <span className="font-semibold text-ink-900 dark:text-white dark:text-white">{form.email}</span> with your next
                 steps.

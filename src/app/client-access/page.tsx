@@ -34,7 +34,7 @@ export default function ClientAccessPage() {
   return (
     <main className="flex flex-1 flex-col">
       <section className="shell-pad flex flex-1 flex-col py-14 sm:py-20">
-        <div className="mx-auto grid w-full max-w-4xl overflow-hidden rounded-[28px] border border-line bg-surface shadow-card lg:grid-cols-2">
+        <div className="mx-auto grid w-full max-w-4xl overflow-hidden rounded-[28px] border border-line dark:border-dark-line bg-surface dark:bg-dark-surface shadow-card lg:grid-cols-2">
           {/* form side */}
           <div className="flex flex-col justify-center gap-6 p-8 sm:p-12">
             <Logo />
@@ -51,7 +51,7 @@ export default function ClientAccessPage() {
                 <h1 className="text-2xl font-extrabold tracking-tight text-ink-900 dark:text-white">
                   Access verified
                 </h1>
-                <p className="text-sm leading-relaxed text-ink-500">
+                <p className="text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">
                   Taking you to your client dashboard…
                 </p>
               </motion.div>
@@ -64,7 +64,7 @@ export default function ClientAccessPage() {
                   <h1 className="text-3xl font-extrabold tracking-tight text-ink-900 dark:text-white">
                     Client Access
                   </h1>
-                  <p className="text-sm leading-relaxed text-ink-500">
+                  <p className="text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">
                     Sign in to view your private career dashboard — strategy, applications,
                     outreach, interviews and more, all in one place.
                   </p>
@@ -86,7 +86,7 @@ export default function ClientAccessPage() {
                         setError(null);
                       }}
                       className={cn(
-                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-500 dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-4",
+                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 dark:text-white placeholder:text-ink-500 dark:text-dark-text-muted dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-4",
                         error ? "border-rose-300 focus:ring-rose-100" : "border-line focus:border-brand-400 focus:ring-brand-100"
                       )}
                     />
@@ -105,7 +105,7 @@ export default function ClientAccessPage() {
                         setError(null);
                       }}
                       className={cn(
-                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 placeholder:text-ink-500 dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-4",
+                        "w-full rounded-xl border bg-surface px-4 py-3 text-sm text-ink-900 dark:text-white placeholder:text-ink-500 dark:text-dark-text-muted dark:placeholder:text-dark-text-muted focus:outline-none focus:ring-4",
                         error ? "border-rose-300 focus:ring-rose-100" : "border-line focus:border-brand-400 focus:ring-brand-100"
                       )}
                     />
@@ -160,14 +160,14 @@ export default function ClientAccessPage() {
                 ].map((item) => (
                   <li
                     key={item}
-                    className="rounded-xl border border-white/10 bg-surface/[0.06] px-3.5 py-2.5 text-[13px] font-semibold text-white/85 backdrop-blur-sm"
+                    className="rounded-xl border border-white/10 bg-surface dark:bg-dark-surface/[0.06] px-3.5 py-2.5 text-[13px] font-semibold text-white/95 backdrop-blur-sm"
                   >
                     {item}
                   </li>
                 ))}
               </ul>
             </div>
-            <div className="relative flex items-center gap-4 rounded-2xl border border-white/10 bg-surface/[0.06] p-4 backdrop-blur-sm">
+            <div className="relative flex items-center gap-4 rounded-2xl border border-white/10 bg-surface dark:bg-dark-surface/[0.06] p-4 backdrop-blur-sm">
               <Image
                 src="/media/HFTLOGO.png"
                 alt=""
@@ -187,7 +187,7 @@ export default function ClientAccessPage() {
           <button
             type="button"
             onClick={() => router.back()}
-            className="inline-flex items-center gap-2 text-sm font-semibold text-ink-500 transition-colors hover:text-brand-600"
+            className="inline-flex items-center gap-2 text-sm font-semibold text-ink-500 dark:text-dark-text-muted transition-colors hover:text-brand-600"
           >
             <ArrowLeft className="size-4" aria-hidden="true" />
             Back to previous page

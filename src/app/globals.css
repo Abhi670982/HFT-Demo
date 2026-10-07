@@ -52,11 +52,11 @@
   --color-icon-rose: #e2554a;
 
   /* Explicit Dark Mode Tokens used across components */
-  --color-dark-surface: #151535; /* Slightly brighter than surface for contrast */
-  --color-dark-line: #2f2f56; /* Stronger line */
+  --color-dark-surface: #1e1e48; /* Lighter surface card background for stronger separation from page bg */
+  --color-dark-line: #42427a; /* Visually distinct border */
   --color-dark-text: #ffffff; /* Crisp white */
-  --color-dark-text-secondary: #d4d7ec; /* Light slate */
-  --color-dark-text-muted: #b4b8d4; /* Mid-light slate */
+  --color-dark-text-secondary: #e2e6f3; /* Bright slate for secondary elements (like Navbar links) */
+  --color-dark-text-muted: #cdd3eb; /* Bright readable slate for muted elements */
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-hand: var(--font-caveat), "Segoe Script", cursive;
@@ -112,15 +112,15 @@
     color-scheme: dark;
     --color-shell: #05051f;
     --color-page: #0a0a28;
-    --color-surface: #12122f;
+    --color-surface: #1a1a3d; /* Brightened surface for better card visibility */
     --color-line: #232345;
     --color-line-strong: #2f2f56;
 
-    --color-ink-900: #ffffff;
-    --color-ink-700: #e2e5f5;
-    --color-ink-600: #c6cbe6;
-    --color-ink-500: #aeb4d8;
-    --color-ink-400: #8f94b8;
+    --color-ink-900: #ffffff; /* Primary headings: pure white */
+    --color-ink-700: #f0f2f8; /* Strong secondary text: very bright */
+    --color-ink-600: #e2e6f3; /* Body text: bright slate */
+    --color-ink-500: #cdd3eb; /* Muted text: solid readable slate */
+    --color-ink-400: #b8c0df; /* Subtle text: highly readable */
 
     --color-pastel-blue: #16233f;
     --color-pastel-lavender: #1f1a3f;

@@ -20,7 +20,7 @@ export default function PricingSection() {
         description="One structured program that combines AI, automation and human expertise — tailored to your stage, your goals and your target roles."
       />
 
-      <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-panel border border-line bg-surface shadow-card md:grid md:grid-cols-[1.15fr_0.85fr]">
+      <div className="mx-auto mt-10 max-w-4xl overflow-hidden rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface shadow-card md:grid md:grid-cols-[1.15fr_0.85fr]">
         {/* value list */}
         <div className="flex flex-col gap-4 p-7 sm:p-9">
           <p className="flex items-center gap-2 text-[11px] font-bold uppercase tracking-[0.16em] text-brand-600">
@@ -47,7 +47,7 @@ export default function PricingSection() {
             <Button href="/get-started" variant="white" size="lg" arrow>
               Get Started
             </Button>
-            <Button href="/how-it-works" variant="ghost" size="md" className="text-white/80 hover:text-white">
+            <Button href="/how-it-works" variant="ghost" size="md" className="text-white/90 hover:text-white">
               See how the process works
             </Button>
           </div>

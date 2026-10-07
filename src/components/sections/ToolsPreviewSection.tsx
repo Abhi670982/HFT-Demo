@@ -26,9 +26,9 @@ export default function ToolsPreviewSection() {
       />
 
       <Reveal delay={0.1} className="mt-10">
-        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-panel border border-line bg-white shadow-card md:grid-cols-2">
+        <div className="mx-auto grid max-w-5xl overflow-hidden rounded-panel border border-line dark:border-dark-line bg-white shadow-card md:grid-cols-2">
           {/* Resume document */}
-          <div className="flex flex-col gap-4 border-b border-line bg-page/60 p-6 sm:p-8 md:border-b-0 md:border-r">
+          <div className="flex flex-col gap-4 border-b border-line dark:border-dark-line bg-page/60 p-6 sm:p-8 md:border-b-0 md:border-r">
             <div className="flex items-center gap-2.5">
               <span className="grid size-9 place-items-center rounded-xl bg-pastel-blue text-icon-blue">
                 <FileText className="size-4.5" aria-hidden="true" />
@@ -39,7 +39,7 @@ export default function ToolsPreviewSection() {
               </div>
             </div>
             {/* fake document lines */}
-            <div className="flex flex-col gap-2.5 rounded-2xl border border-line bg-white p-5 shadow-soft">
+            <div className="flex flex-col gap-2.5 rounded-2xl border border-line dark:border-dark-line bg-white p-5 shadow-soft">
               <div className="h-2.5 w-1/2 rounded-full bg-brand-200" />
               <div className="h-2 w-3/4 rounded-full bg-line-strong" />
               <div className="h-2 w-2/3 rounded-full bg-line-strong" />
@@ -107,7 +107,7 @@ export default function ToolsPreviewSection() {
               </div>
             </div>
 
-            <p className="flex items-start gap-2 text-xs leading-relaxed text-ink-500">
+            <p className="flex items-start gap-2 text-xs leading-relaxed text-ink-500 dark:text-dark-text-muted">
               <Lightbulb className="mt-0.5 size-4 shrink-0 text-icon-violet" aria-hidden="true" />
               Suggestions: add measurable outcomes to your top 2 roles and mirror the JD&rsquo;s
               core skills in your summary.

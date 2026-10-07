@@ -22,7 +22,7 @@ export default function Marquee({ items, dark = false, slow = false, className }
     <div
       className={cn(
         "group relative w-full overflow-hidden py-2",
-        dark ? "text-white/90" : "text-ink-500",
+        dark ? "text-white/90" : "text-ink-500 dark:text-dark-text-muted",
         className
       )}
       style={{
@@ -62,8 +62,8 @@ export default function Marquee({ items, dark = false, slow = false, className }
                 className={cn(
                   "text-[15px] font-bold tracking-tight transition-colors duration-300 sm:text-base",
                   dark
-                    ? "text-white/80 group-hover:text-white"
-                    : "text-ink-700 group-hover:text-ink-900 dark:text-white/80 dark:group-hover:text-white"
+                    ? "text-white/90 group-hover:text-white"
+                    : "text-ink-700 group-hover:text-ink-900 dark:text-white/90 dark:group-hover:text-white"
                 )}
               >
                 {item.name}

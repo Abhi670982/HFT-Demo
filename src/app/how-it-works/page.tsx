@@ -32,7 +32,7 @@ export default function HowItWorksPage() {
         }
       >
         {/* mini visual workflow */}
-        <div className="rounded-[28px] border border-line bg-surface p-6 shadow-card sm:p-8">
+        <div className="rounded-[28px] border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-6 shadow-card sm:p-8">
           <div className="flex flex-col gap-4">
             {steps.map((step) => (
               <div key={step.number} className="flex items-center gap-3.5">
@@ -63,8 +63,8 @@ export default function HowItWorksPage() {
         <div className="mx-auto flex max-w-4xl flex-col gap-6">
           {steps.map((step, i) => (
             <Reveal key={step.number} delay={0.04}>
-              <article className="overflow-hidden rounded-panel border border-line bg-surface shadow-soft">
-                <div className="flex flex-col gap-4 border-b border-line bg-page/50 p-6 sm:flex-row sm:items-center sm:gap-5 sm:p-7">
+              <article className="overflow-hidden rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface shadow-soft">
+                <div className="flex flex-col gap-4 border-b border-line dark:border-dark-line bg-page/50 p-6 sm:flex-row sm:items-center sm:gap-5 sm:p-7">
                   <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-gradient-to-br from-brand-600 to-brand-400 text-lg font-extrabold text-white shadow-glow">
                     {step.number}
                   </span>
@@ -72,7 +72,7 @@ export default function HowItWorksPage() {
                     <h2 className="text-xl font-bold tracking-tight text-ink-900 dark:text-white sm:text-2xl">
                       {step.title}
                     </h2>
-                    <p className="mt-1 text-sm leading-relaxed text-ink-500">{step.description}</p>
+                    <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">{step.description}</p>
                   </div>
                 </div>
 
@@ -146,7 +146,7 @@ export default function HowItWorksPage() {
       {/* agent strip teaser */}
       <section className="shell-pad py-10">
         <Reveal>
-          <div className="flex flex-col items-center gap-4 rounded-panel border border-line bg-surface p-8 text-center shadow-soft sm:flex-row sm:text-left">
+          <div className="flex flex-col items-center gap-4 rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-8 text-center shadow-soft sm:flex-row sm:text-left">
             <IconContainer tone="violet" size="lg">
               <Bot aria-hidden="true" />
             </IconContainer>
@@ -154,7 +154,7 @@ export default function HowItWorksPage() {
               <h2 className="text-xl font-bold tracking-tight text-ink-900 dark:text-white dark:text-white">
                 Backed by 11 specialised AI agents
               </h2>
-              <p className="mt-1 text-sm leading-relaxed text-ink-500">
+              <p className="mt-1 text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted">
                 Every step of this process is powered by agents built for one job — strategy,
                 discovery, branding, outreach or interviews.
               </p>

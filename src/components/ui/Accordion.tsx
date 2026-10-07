@@ -60,7 +60,7 @@ export default function Accordion({ items, className, defaultOpen = 0 }: Accordi
                   exit={{ height: 0, opacity: 0 }}
                   transition={{ duration: 0.32, ease: "easeOut" }}
                 >
-                  <p className="px-5 pb-5 text-sm leading-relaxed text-ink-500 sm:px-6 sm:pb-6">
+                  <p className="px-5 pb-5 text-sm leading-relaxed text-ink-500 dark:text-dark-text-muted sm:px-6 sm:pb-6">
                     {item.answer}
                   </p>
                 </motion.div>

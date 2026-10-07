@@ -53,9 +53,9 @@ export default function AiAgentsPage() {
             priority
             className="relative h-auto w-full rounded-[24px] border border-line object-cover shadow-card dark:border-dark-line"
           />
-          <div className="absolute -bottom-5 left-4 animate-floaty rounded-2xl border border-line bg-surface px-4 py-2.5 shadow-card">
+          <div className="absolute -bottom-5 left-4 animate-floaty rounded-2xl border border-line dark:border-dark-line bg-surface dark:bg-dark-surface px-4 py-2.5 shadow-card">
             <p className="text-xs font-bold text-ink-900 dark:text-white">🤖 11 agents · one mission</p>
-            <p className="text-[11px] text-ink-500">Your career, on autopilot + guidance</p>
+            <p className="text-[11px] text-ink-500 dark:text-dark-text-muted">Your career, on autopilot + guidance</p>
           </div>
         </div>
       </PageHero>
@@ -109,9 +109,9 @@ export default function AiAgentsPage() {
       {/* ecosystem strip */}
       <section className="shell-pad py-10">
         <Reveal>
-          <div className="flex flex-col items-center gap-3 rounded-panel border border-line bg-surface p-8 text-center shadow-soft">
+          <div className="flex flex-col items-center gap-3 rounded-panel border border-line dark:border-dark-line bg-surface dark:bg-dark-surface p-8 text-center shadow-soft">
             <Pill>How they coordinate</Pill>
-            <p className="max-w-3xl text-[15px] leading-relaxed text-ink-500">
+            <p className="max-w-3xl text-[15px] leading-relaxed text-ink-500 dark:text-dark-text-muted">
               Your agents share one strategy, one pipeline and one goal. The Career Strategist sets
               direction, discovery agents find opportunities, branding agents make you impossible to
               ignore, and interview agents close the deal — with human guides reviewing every

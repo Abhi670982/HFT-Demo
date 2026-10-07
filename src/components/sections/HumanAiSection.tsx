@@ -64,7 +64,7 @@ export default function HumanAiSection() {
             ))}
           </div>
 
-          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-white/80">
+          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-white/90">
             AI automation handles discovery, optimisation and tracking. Human experience guides
             every decision that shapes your career.
           </p>

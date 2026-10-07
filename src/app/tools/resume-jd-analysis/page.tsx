@@ -23,7 +23,7 @@ export default function ResumeJdAnalysisPage() {
       />
       <section className="shell-pad pb-14">
         <Reveal>
-          <div className="rounded-[28px] border border-line bg-page p-5 shadow-soft sm:p-8">
+          <div className="rounded-[28px] border border-line dark:border-dark-line bg-page p-5 shadow-soft sm:p-8">
             <ToolAnalyzer />
           </div>
         </Reveal>

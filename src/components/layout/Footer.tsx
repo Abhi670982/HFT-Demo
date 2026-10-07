@@ -54,7 +54,7 @@ export default function Footer() {
                 HuntForTomorrow
               </span>
             </Link>
-            <p className="mt-4 text-[13px] leading-relaxed text-white/80">
+            <p className="mt-4 text-[13px] leading-relaxed text-white/90">
               {siteTagline}. An AI-powered career ecosystem with 11 specialised agents, human
               guidance and end-to-end support — built to land you the right opportunities faster.
             </p>
@@ -89,7 +89,7 @@ export default function Footer() {
                     <li key={link.label}>
                       <Link
                         href={link.href}
-                        className="text-[13px] text-white/80 transition-colors hover:text-brand-300"
+                        className="text-[13px] text-white/90 transition-colors hover:text-brand-300"
                       >
                         {link.label}
                       </Link>
@@ -105,7 +105,7 @@ export default function Footer() {
           <p className="text-xs">
             © {new Date().getFullYear()} {siteName} — {siteTagline}
           </p>
-          <p className="text-xs text-white/80">Built with AI + human care, for your career.</p>
+          <p className="text-xs text-white/90">Built with AI + human care, for your career.</p>
         </div>
       </div>
     </footer>
